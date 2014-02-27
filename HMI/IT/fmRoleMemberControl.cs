@@ -96,14 +96,19 @@ namespace HMI.IT
         {
             string xml = dataGridView1.SelectedRows[0].Cells["USER_SET"].Value.ToString();
 
-            textBox1.Text = "";
-
             XDocument doc = XDocument.Parse(xml);
 
             IEnumerable<XElement> targetNodes = from q in doc.Descendants("userId")
                                                 select q;
 
-            textBox1.Text = doc.ToString();
+
+            var targetNodess = from q in doc.Descendants("Element")
+                               where q.Attribute("type").Value == "jobFunctionOfGroup"
+                               select new {
+                                   jobFunctionId = q.Descendants("jobFunctionId"),
+                                   groupId = q.Descendants("groupId")
+                               };
+
 
             #region 失敗的方法
             //XmlProfile proxml = new XmlProfile(xml, "");

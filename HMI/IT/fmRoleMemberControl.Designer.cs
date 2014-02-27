@@ -31,7 +31,6 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.lbModule = new System.Windows.Forms.ListBox();
             this.lbRoleID = new System.Windows.Forms.ListBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnProfile = new System.Windows.Forms.Button();
             this.userControl11 = new HMI.PublicUnit.UserControl1();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -66,14 +65,6 @@
             this.lbRoleID.TabIndex = 3;
             this.lbRoleID.SelectedIndexChanged += new System.EventHandler(this.lbRoleID_SelectedIndexChanged);
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(502, 98);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(203, 357);
-            this.textBox1.TabIndex = 4;
-            // 
             // btnProfile
             // 
             this.btnProfile.Location = new System.Drawing.Point(326, 212);
@@ -98,7 +89,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(970, 592);
             this.Controls.Add(this.btnProfile);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.lbRoleID);
             this.Controls.Add(this.lbModule);
             this.Controls.Add(this.userControl11);
@@ -108,7 +98,6 @@
             this.Load += new System.EventHandler(this.fmRoleMemberControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -118,7 +107,6 @@
         private PublicUnit.UserControl1 userControl11;
         private System.Windows.Forms.ListBox lbModule;
         private System.Windows.Forms.ListBox lbRoleID;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnProfile;
     }
 }
