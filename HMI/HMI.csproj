@@ -58,6 +58,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Addone_dll\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -72,8 +74,15 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dialog\fmEasyFindEmp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\fmEasyFindEmp.Designer.cs">
+      <DependentUpon>fmEasyFindEmp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entity\Log.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -1248,6 +1257,9 @@
     <Compile Include="UC\UCButton.Designer.cs">
       <DependentUpon>UCButton.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Dialog\fmEasyFindEmp.resx">
+      <DependentUpon>fmEasyFindEmp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HR\fmCheckOldClockTime.resx">
       <DependentUpon>fmCheckOldClockTime.cs</DependentUpon>
     </EmbeddedResource>

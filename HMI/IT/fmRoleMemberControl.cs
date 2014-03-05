@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 using System.Xml.Linq;
 using HMI.Entity;
 using Lib;
@@ -16,7 +17,7 @@ namespace HMI.IT
     public partial class fmRoleMemberControl : Form
     {
 
-        //紀錄各種腳色範圍
+        //紀錄各種角色範圍
         List<Auth> la = new List<Auth>();
 
         public fmRoleMemberControl()
@@ -33,9 +34,9 @@ namespace HMI.IT
         {
             using (var en = new UOFEntities())
             {
-                //顯示全部腳色
+                //顯示全部角色
                 var rolemodule = (from q in en.TB_EB_SEC_ROLE
-                            select q)
+                                  select q)
                             .GroupBy(p => p.MODULE_ID)
                             .Select(q => q.Key);
 
@@ -47,7 +48,7 @@ namespace HMI.IT
         }
 
         /// <summary>
-        /// 選取腳色群組
+        /// 選取角色群組
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -55,8 +56,8 @@ namespace HMI.IT
         {
             string selectedmodule = lbModule.SelectedItem.ToString();
 
-            using(var en = new UOFEntities())
-	        {
+            using (var en = new UOFEntities())
+            {
                 //先清除
                 lbRoleID.Items.Clear();
                 var roles = from q in en.TB_EB_SEC_ROLE
@@ -67,18 +68,18 @@ namespace HMI.IT
                 {
                     lbRoleID.Items.Add(item.ROLE_ID);
                 }
-	        }
+            }
         }
 
         /// <summary>
-        /// 選取腳色
+        /// 選取角色
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void lbRoleID_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedrole = lbRoleID.SelectedItem.ToString();
-            
+
             using (var en = new UOFEntities())
             {
                 var member = from q in en.TB_EB_SEC_ROLE_MEMBER
@@ -109,7 +110,7 @@ namespace HMI.IT
             var elementtype = from q in doc.Descendants("Element")
                               group q by q.Attribute("type").Value into g
                               select g.Key;
-                              
+
 
             //取得userid
             var usernode = from q in doc.Descendants("userId")
@@ -124,41 +125,50 @@ namespace HMI.IT
             {
                 la.Add(item);
             }
-            
+
             //取得jobTitle
-            var jobtitlenode = from q in doc.Descendants("jobTitleId")
+            var jobtitlenode = from q in doc.Descendants("Element")
+                               where q.Attribute("type").Value == "jobTitle"
                                select new Auth
                                {
                                    範圍種類 = "職級",
-                                   範圍1 = getJobTitle(q.Value).TITLE_NAME,
-                                   key1 = q.Value
+                                   範圍1 = getJobTitle(q.Descendants("jobTitleId").First().Value).TITLE_NAME,
+                                   key1 = q.Descendants("jobTitleId").First().Value
                                };
             foreach (var item in jobtitlenode)
             {
                 la.Add(item);
             }
 
+            var jobtitlegroupNodes = from q in doc.Descendants("Element")
+                                     where q.Attribute("type").Value == "jobTitleOfGroup"
+                                     select new Auth
+                                     {
+                                         範圍種類 = "職級和部門",
+                                         範圍1 = getJobTitle(q.Descendants("jobTitleId").First().Value).TITLE_NAME,
+                                         key1 = q.Descendants("jobTitleId").First().Value
+                                     };
+            foreach (var item in jobtitlegroupNodes)
+            {
+                
+            }
+
             var jobfuncgroupNodes = from q in doc.Descendants("Element")
-                               where q.Attribute("type").Value == "jobFunctionOfGroup"
-                               select new Auth
-                               {
-                                   範圍種類 = "職務和部門",
-                                   範圍1 = getJobFunc(q.Descendants("jobFunctionId").First().Value).FUNC_NAME,
-                                   key1 = q.Descendants("jobFunctionId").First().Value,
-                                   範圍2 = getGroup(q.Descendants("groupId").First().Value).GROUP_NAME,
-                                   key2 = q.Descendants("groupId").First().Value
-                               };
+                                    where q.Attribute("type").Value == "jobFunctionOfGroup"
+                                    select new Auth
+                                    {
+                                        範圍種類 = "職務和部門",
+                                        範圍1 = getJobFunc(q.Descendants("jobFunctionId").First().Value).FUNC_NAME,
+                                        key1 = q.Descendants("jobFunctionId").First().Value,
+                                        範圍2 = getGroup(q.Descendants("groupId").First().Value).GROUP_NAME,
+                                        key2 = q.Descendants("groupId").First().Value
+                                    };
             foreach (var item in jobfuncgroupNodes)
             {
                 la.Add(item);
             }
 
-            dgvAuth.DataSource = (from q in la
-                                 select new {
-                                     權限名稱 = q.範圍種類,
-                                     範圍1 = q.範圍1,
-                                     範圍2 = q.範圍2,
-                                 }).ToList();
+            dgvAuth.DataSource = la.ToList();
             #region 失敗的方法
             //XmlProfile proxml = new XmlProfile(xml, "");
             //紀錄上一個節點名稱
@@ -216,11 +226,15 @@ namespace HMI.IT
             //    }
             //}
             #endregion
-            
+
         }
 
         /// <summary>
         /// 選擇新增的範圍總類
+        /// 人員
+        /// 部門
+        /// 職級
+        /// 職務和部門
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -229,22 +243,18 @@ namespace HMI.IT
             switch (cbAuthAdd.SelectedItem.ToString())
             {
                 case "人員":
-                    lblDetail1.Text = "員編";
                     lblDetail2.Enabled = false;
                     txtDetail2.Enabled = false;
                     break;
                 case "部門":
-                    lblDetail1.Text = "部門";
                     lblDetail2.Enabled = false;
                     txtDetail2.Enabled = false;
                     break;
                 case "職級":
-                    lblDetail1.Text = "職級";
                     lblDetail2.Enabled = false;
                     txtDetail2.Enabled = false;
                     break;
                 case "職務和部門":
-                    lblDetail1.Text = "職務和部門";
                     lblDetail2.Enabled = true;
                     txtDetail2.Enabled = true;
                     break;
@@ -267,11 +277,126 @@ namespace HMI.IT
         private void btnAuthAdd_Click(object sender, EventArgs e)
         {
 
+            using (var en = new UOFEntities())
+            {
+                switch (cbAuthAdd.SelectedItem.ToString())
+                {
+                    case "人員":
+                        var emp = (from q in en.TB_EB_USER
+                                   where q.ACCOUNT.Equals(txtDetail1.Text)
+                                   select new Auth
+                                   {
+                                       範圍種類 = "人員",
+                                       範圍1 = q.NAME,
+                                       key1 = q.USER_GUID
+                                   }).First();
+                        if (emp != null)
+                        {
+                            la.Add(emp);
+                        }
+                        break;
+                    case "部門":
+                        var group = (from q in en.TB_EB_GROUP
+                                     where q.GROUP_NAME.Equals(txtDetail1.Text)
+                                     select new Auth
+                                     {
+                                         範圍種類 = "部門",
+                                         範圍1 = q.GROUP_NAME,
+                                         key1 = q.GROUP_ID
+                                     }).First();
+                        if (group != null)
+                        {
+                            la.Add(group);
+                        }
+                        break;
+                    case "職級":
+                        var jobtitle = (from q in en.TB_EB_JOB_TITLE
+                                        where q.TITLE_NAME.Equals(txtDetail1.Text)
+                                        select new Auth
+                                        {
+                                            範圍種類 = "職級",
+                                            範圍1 = q.TITLE_NAME,
+                                            key1 = q.TITLE_ID
+                                        }).First();
+                        if (jobtitle != null)
+                        {
+                            la.Add(jobtitle);
+                        }
+                        break;
+                    case "職務和部門":
+                        
+                        var data = (from q in en.TB_EB_GROUP
+                                   where q.GROUP_NAME == txtDetail1.Text
+                                   select new
+                                   {
+                                       id = q.GROUP_NAME,
+                                       key = q.GROUP_ID
+                                   }).First();
+
+                        var data2 = (from q in en.TB_EB_JOB_FUNC
+                                    where q.FUNC_NAME == txtDetail2.Text
+                                    select new
+                                    {
+                                        id = q.FUNC_NAME,
+                                        key = q.FUNC_ID
+                                    }).First();
+                        Auth temp = new Auth { 
+                                        範圍種類 = "職務和部門", 
+                                        範圍1 = data.id, 
+                                        key1 = data.key,
+                                        範圍2 = data2.id,
+                                        key2 = data2.key
+                                    };
+                        if (data != null && data2 != null)
+                        {
+                            la.Add(temp);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+
+                dgvAuth.DataSource = la.ToList();
+            }
         }
 
-        
+        /// <summary>
+        /// 更新XML
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnRenewXml_Click(object sender, EventArgs e)
+        {
+            XmlDocument xmlDox = new XmlDocument();
 
-        //腳色範圍
+            XElement xTree = new XElement("UserSet",
+                                            from q in la
+                                            where q.範圍種類.Equals("人員")
+                                            select new XElement("Element", new XAttribute("type", "user"),
+                                                new XElement("userId", q.key1)
+                                            ),
+                                            from q in la
+                                            where q.範圍種類.Equals("職級")
+                                            select new XElement("Element", new XAttribute("type", "jobTitle"),
+                                                new XElement("jobTitleId", q.key1)
+                                            ),
+                                            from q in la
+                                            where q.範圍種類.Equals("職務和部門")
+                                            select new XElement("Element", new XAttribute("type", "jobFunctionOfGroup"), new XAttribute("isDepth", "True"),
+                                                new XElement("jobFunctionId", q.key1),
+                                                new XElement("groupId", q.key2)
+                                            )
+                                );
+            string outxml = xTree.ToString();
+            //foreach (Auth item in la.Where(p => p.範圍種類.Equals("人員")))
+            //{
+            //    xUserTree = new XElement("Element", new XAttribute("type","user"),
+            //                                item.key1
+            //                            );
+            //}
+        }
+
+        //角色範圍
         private class Auth
         {
             private string type;
@@ -280,7 +405,8 @@ namespace HMI.IT
             private string a2;
             private string k2;
 
-            public string 範圍種類 {
+            public string 範圍種類
+            {
                 get { return type; }
                 set { type = value; }
             }
@@ -311,14 +437,14 @@ namespace HMI.IT
         }
 
         //職務配部門的範圍
-        private class JobFunctionOfGroupAuth 
+        private class JobFunctionOfGroupAuth
         {
             public XElement jobfuncid { set; get; }
             public XElement groupid { set; get; }
         }
 
         //找人
-        private TB_EB_USER getUser(string p_EmpGUID) 
+        private TB_EB_USER getUser(string p_EmpGUID)
         {
             using (var en = new UOFEntities())
             {
@@ -326,9 +452,9 @@ namespace HMI.IT
                 return user;
             }
         }
-        
+
         //找職級 ex:專員
-        private TB_EB_JOB_TITLE getJobTitle(string p_TITLE_ID) 
+        private TB_EB_JOB_TITLE getJobTitle(string p_TITLE_ID)
         {
             using (var en = new UOFEntities())
             {
@@ -338,7 +464,7 @@ namespace HMI.IT
         }
 
         //找職務 ex:廠長
-        private TB_EB_JOB_FUNC getJobFunc(string p_FuncID) 
+        private TB_EB_JOB_FUNC getJobFunc(string p_FuncID)
         {
             using (var en = new UOFEntities())
             {
@@ -348,7 +474,7 @@ namespace HMI.IT
         }
 
         //找部門 ex:青年廠
-        private TB_EB_GROUP getGroup(string p_GroupID) 
+        private TB_EB_GROUP getGroup(string p_GroupID)
         {
             using (var en = new UOFEntities())
             {
@@ -357,10 +483,5 @@ namespace HMI.IT
             }
         }
 
-        
-
-        
-
-        
     }
 }

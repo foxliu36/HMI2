@@ -35,13 +35,20 @@
             this.dgvAuth = new System.Windows.Forms.DataGridView();
             this.cbAuthAdd = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnAuthAdd = new System.Windows.Forms.Button();
-            this.txtDetail1 = new System.Windows.Forms.TextBox();
-            this.btnDetailCheck = new System.Windows.Forms.Button();
-            this.txtDetail2 = new System.Windows.Forms.TextBox();
-            this.lblDetail1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.lblDetail2 = new System.Windows.Forms.Label();
+            this.lblDetail1 = new System.Windows.Forms.Label();
+            this.txtDetail2 = new System.Windows.Forms.TextBox();
+            this.btnDetailCheck = new System.Windows.Forms.Button();
+            this.txtDetail1 = new System.Windows.Forms.TextBox();
+            this.btnAuthAdd = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnRenewXml = new System.Windows.Forms.Button();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAuth)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -90,6 +97,12 @@
             // dgvAuth
             // 
             this.dgvAuth.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAuth.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4,
+            this.Column5});
             this.dgvAuth.Location = new System.Drawing.Point(408, 12);
             this.dgvAuth.Name = "dgvAuth";
             this.dgvAuth.RowTemplate.Height = 24;
@@ -112,6 +125,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.lblDetail2);
             this.groupBox1.Controls.Add(this.lblDetail1);
             this.groupBox1.Controls.Add(this.txtDetail2);
@@ -122,63 +136,19 @@
             this.groupBox1.Controls.Add(this.cbAuthAdd);
             this.groupBox1.Location = new System.Drawing.Point(12, 241);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(246, 339);
+            this.groupBox1.Size = new System.Drawing.Size(246, 245);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "新增權限";
+            this.groupBox1.Text = "新增腳色範圍";
             // 
-            // label1
+            // button1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(17, 39);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 12);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "範圍種類:";
-            // 
-            // btnAuthAdd
-            // 
-            this.btnAuthAdd.Location = new System.Drawing.Point(134, 310);
-            this.btnAuthAdd.Name = "btnAuthAdd";
-            this.btnAuthAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAuthAdd.TabIndex = 10;
-            this.btnAuthAdd.Text = "新增範圍";
-            this.btnAuthAdd.UseVisualStyleBackColor = true;
-            this.btnAuthAdd.Click += new System.EventHandler(this.btnAuthAdd_Click);
-            // 
-            // txtDetail1
-            // 
-            this.txtDetail1.Location = new System.Drawing.Point(79, 80);
-            this.txtDetail1.Name = "txtDetail1";
-            this.txtDetail1.Size = new System.Drawing.Size(118, 22);
-            this.txtDetail1.TabIndex = 11;
-            // 
-            // btnDetailCheck
-            // 
-            this.btnDetailCheck.Location = new System.Drawing.Point(19, 310);
-            this.btnDetailCheck.Name = "btnDetailCheck";
-            this.btnDetailCheck.Size = new System.Drawing.Size(75, 23);
-            this.btnDetailCheck.TabIndex = 12;
-            this.btnDetailCheck.Text = "查詢";
-            this.btnDetailCheck.UseVisualStyleBackColor = true;
-            this.btnDetailCheck.Click += new System.EventHandler(this.btnDetailCheck_Click);
-            // 
-            // txtDetail2
-            // 
-            this.txtDetail2.Enabled = false;
-            this.txtDetail2.Location = new System.Drawing.Point(79, 159);
-            this.txtDetail2.Name = "txtDetail2";
-            this.txtDetail2.Size = new System.Drawing.Size(118, 22);
-            this.txtDetail2.TabIndex = 13;
-            // 
-            // lblDetail1
-            // 
-            this.lblDetail1.AutoSize = true;
-            this.lblDetail1.Location = new System.Drawing.Point(11, 83);
-            this.lblDetail1.Name = "lblDetail1";
-            this.lblDetail1.Size = new System.Drawing.Size(62, 12);
-            this.lblDetail1.TabIndex = 14;
-            this.lblDetail1.Text = "範圍細節1:";
+            this.button1.Location = new System.Drawing.Point(164, 78);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(36, 23);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "...";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // lblDetail2
             // 
@@ -190,11 +160,105 @@
             this.lblDetail2.TabIndex = 15;
             this.lblDetail2.Text = "範圍細節2:";
             // 
+            // lblDetail1
+            // 
+            this.lblDetail1.AutoSize = true;
+            this.lblDetail1.Location = new System.Drawing.Point(11, 83);
+            this.lblDetail1.Name = "lblDetail1";
+            this.lblDetail1.Size = new System.Drawing.Size(62, 12);
+            this.lblDetail1.TabIndex = 14;
+            this.lblDetail1.Text = "範圍細節1:";
+            // 
+            // txtDetail2
+            // 
+            this.txtDetail2.Enabled = false;
+            this.txtDetail2.Location = new System.Drawing.Point(79, 159);
+            this.txtDetail2.Name = "txtDetail2";
+            this.txtDetail2.Size = new System.Drawing.Size(77, 22);
+            this.txtDetail2.TabIndex = 13;
+            // 
+            // btnDetailCheck
+            // 
+            this.btnDetailCheck.Location = new System.Drawing.Point(19, 203);
+            this.btnDetailCheck.Name = "btnDetailCheck";
+            this.btnDetailCheck.Size = new System.Drawing.Size(75, 23);
+            this.btnDetailCheck.TabIndex = 12;
+            this.btnDetailCheck.Text = "查詢";
+            this.btnDetailCheck.UseVisualStyleBackColor = true;
+            this.btnDetailCheck.Click += new System.EventHandler(this.btnDetailCheck_Click);
+            // 
+            // txtDetail1
+            // 
+            this.txtDetail1.Location = new System.Drawing.Point(79, 80);
+            this.txtDetail1.Name = "txtDetail1";
+            this.txtDetail1.Size = new System.Drawing.Size(77, 22);
+            this.txtDetail1.TabIndex = 11;
+            // 
+            // btnAuthAdd
+            // 
+            this.btnAuthAdd.Location = new System.Drawing.Point(134, 203);
+            this.btnAuthAdd.Name = "btnAuthAdd";
+            this.btnAuthAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAuthAdd.TabIndex = 10;
+            this.btnAuthAdd.Text = "新增範圍";
+            this.btnAuthAdd.UseVisualStyleBackColor = true;
+            this.btnAuthAdd.Click += new System.EventHandler(this.btnAuthAdd_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(17, 39);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(56, 12);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "範圍種類:";
+            // 
+            // btnRenewXml
+            // 
+            this.btnRenewXml.Location = new System.Drawing.Point(426, 526);
+            this.btnRenewXml.Name = "btnRenewXml";
+            this.btnRenewXml.Size = new System.Drawing.Size(75, 23);
+            this.btnRenewXml.TabIndex = 10;
+            this.btnRenewXml.Text = "更新Xml";
+            this.btnRenewXml.UseVisualStyleBackColor = true;
+            this.btnRenewXml.Click += new System.EventHandler(this.btnRenewXml_Click);
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "範圍種類";
+            this.Column1.HeaderText = "範圍種類";
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "範圍1";
+            this.Column2.HeaderText = "範圍1";
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "範圍2";
+            this.Column3.HeaderText = "範圍2";
+            this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "key1";
+            this.Column4.HeaderText = "Column4";
+            this.Column4.Name = "Column4";
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "key2";
+            this.Column5.HeaderText = "Column5";
+            this.Column5.Name = "Column5";
+            // 
             // fmRoleMemberControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(970, 592);
+            this.Controls.Add(this.btnRenewXml);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgvAuth);
             this.Controls.Add(this.btnProfile);
@@ -228,5 +292,12 @@
         private System.Windows.Forms.Label lblDetail2;
         private System.Windows.Forms.Label lblDetail1;
         private System.Windows.Forms.TextBox txtDetail2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnRenewXml;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
     }
 }
