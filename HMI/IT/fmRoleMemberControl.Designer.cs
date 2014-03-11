@@ -33,9 +33,14 @@
             this.lbRoleID = new System.Windows.Forms.ListBox();
             this.btnProfile = new System.Windows.Forms.Button();
             this.dgvAuth = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cbAuthAdd = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnCheck = new System.Windows.Forms.Button();
             this.lblDetail2 = new System.Windows.Forms.Label();
             this.lblDetail1 = new System.Windows.Forms.Label();
             this.txtDetail2 = new System.Windows.Forms.TextBox();
@@ -44,11 +49,8 @@
             this.btnAuthAdd = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnRenewXml = new System.Windows.Forms.Button();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.btnDeleteRange = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAuth)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -109,14 +111,39 @@
             this.dgvAuth.Size = new System.Drawing.Size(550, 474);
             this.dgvAuth.TabIndex = 7;
             // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "範圍種類";
+            this.Column1.HeaderText = "範圍種類";
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "範圍1";
+            this.Column2.HeaderText = "範圍1";
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "範圍2";
+            this.Column3.HeaderText = "範圍2";
+            this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "key1";
+            this.Column4.HeaderText = "Column4";
+            this.Column4.Name = "Column4";
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "key2";
+            this.Column5.HeaderText = "Column5";
+            this.Column5.Name = "Column5";
+            // 
             // cbAuthAdd
             // 
             this.cbAuthAdd.FormattingEnabled = true;
-            this.cbAuthAdd.Items.AddRange(new object[] {
-            "人員",
-            "部門",
-            "職級",
-            "職務和部門"});
             this.cbAuthAdd.Location = new System.Drawing.Point(79, 36);
             this.cbAuthAdd.Name = "cbAuthAdd";
             this.cbAuthAdd.Size = new System.Drawing.Size(121, 20);
@@ -125,7 +152,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.btnCheck);
             this.groupBox1.Controls.Add(this.lblDetail2);
             this.groupBox1.Controls.Add(this.lblDetail1);
             this.groupBox1.Controls.Add(this.txtDetail2);
@@ -141,14 +168,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "新增腳色範圍";
             // 
-            // button1
+            // btnCheck
             // 
-            this.button1.Location = new System.Drawing.Point(164, 78);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(36, 23);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "...";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnCheck.Location = new System.Drawing.Point(164, 78);
+            this.btnCheck.Name = "btnCheck";
+            this.btnCheck.Size = new System.Drawing.Size(36, 23);
+            this.btnCheck.TabIndex = 16;
+            this.btnCheck.Text = "...";
+            this.btnCheck.UseVisualStyleBackColor = true;
+            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
             // 
             // lblDetail2
             // 
@@ -215,49 +243,40 @@
             // 
             // btnRenewXml
             // 
-            this.btnRenewXml.Location = new System.Drawing.Point(426, 526);
+            this.btnRenewXml.Location = new System.Drawing.Point(408, 505);
             this.btnRenewXml.Name = "btnRenewXml";
-            this.btnRenewXml.Size = new System.Drawing.Size(75, 23);
+            this.btnRenewXml.Size = new System.Drawing.Size(124, 54);
             this.btnRenewXml.TabIndex = 10;
             this.btnRenewXml.Text = "更新Xml";
             this.btnRenewXml.UseVisualStyleBackColor = true;
             this.btnRenewXml.Click += new System.EventHandler(this.btnRenewXml_Click);
             // 
-            // Column1
+            // listBox1
             // 
-            this.Column1.DataPropertyName = "範圍種類";
-            this.Column1.HeaderText = "範圍種類";
-            this.Column1.Name = "Column1";
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 12;
+            this.listBox1.Location = new System.Drawing.Point(282, 277);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(120, 88);
+            this.listBox1.TabIndex = 11;
             // 
-            // Column2
+            // btnDeleteRange
             // 
-            this.Column2.DataPropertyName = "範圍1";
-            this.Column2.HeaderText = "範圍1";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "範圍2";
-            this.Column3.HeaderText = "範圍2";
-            this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "key1";
-            this.Column4.HeaderText = "Column4";
-            this.Column4.Name = "Column4";
-            // 
-            // Column5
-            // 
-            this.Column5.DataPropertyName = "key2";
-            this.Column5.HeaderText = "Column5";
-            this.Column5.Name = "Column5";
+            this.btnDeleteRange.Location = new System.Drawing.Point(273, 444);
+            this.btnDeleteRange.Name = "btnDeleteRange";
+            this.btnDeleteRange.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteRange.TabIndex = 12;
+            this.btnDeleteRange.Text = "刪除範圍";
+            this.btnDeleteRange.UseVisualStyleBackColor = true;
+            this.btnDeleteRange.Click += new System.EventHandler(this.btnDeleteRange_Click);
             // 
             // fmRoleMemberControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(970, 592);
+            this.Controls.Add(this.btnDeleteRange);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.btnRenewXml);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgvAuth);
@@ -292,12 +311,14 @@
         private System.Windows.Forms.Label lblDetail2;
         private System.Windows.Forms.Label lblDetail1;
         private System.Windows.Forms.TextBox txtDetail2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCheck;
         private System.Windows.Forms.Button btnRenewXml;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button btnDeleteRange;
     }
 }

@@ -18,7 +18,7 @@ namespace HMI
     {
 
         List<ExportData> ShowList = new List<ExportData>();
-        DataTable temp = new DataTable();
+        DataTable dtforExl = new DataTable();
         Dao dao = new Dao();
         //匯出excel權限
         int process = 0;
@@ -124,12 +124,12 @@ namespace HMI
                 {
                     dataGridView1.DataSource = data.ToList<ExportData>();
                     this.ShowList = data.ToList<ExportData>();
-                    this.temp = ConvertToDataTable<ExportData>(data.ToList<ExportData>());
+                    this.dtforExl = ConvertToDataTable<ExportData>(data.ToList<ExportData>());
                 }
                 else {
                     dataGridView1.DataSource = databyEmpNo.ToList<ExportData>();
                     this.ShowList = databyEmpNo.ToList<ExportData>();
-                    this.temp = ConvertToDataTable<ExportData>(databyEmpNo.ToList<ExportData>());
+                    this.dtforExl = ConvertToDataTable<ExportData>(databyEmpNo.ToList<ExportData>());
                 }
                 
             }
@@ -178,7 +178,7 @@ namespace HMI
                 }
                 unlockScreen();
                 dataGridView1.DataSource = totalList;
-                temp = ConvertToDataTable<PernalData>(totalList);
+                dtforExl = ConvertToDataTable<PernalData>(totalList);
 
             }
             else
@@ -222,7 +222,7 @@ namespace HMI
                     ex.SetColumeName(new string[] { "員工卡號", "刷卡日期", "刷卡時間", "進出別" });
                     
                     //ex.myDGV = dataGridView1;
-                    ex.ExportExcel(this.temp);
+                    ex.ExportExcel(this.dtforExl);
 
                     unlockScreen();
                     
@@ -340,7 +340,7 @@ namespace HMI
 
                 Cells cellA = newbook.Worksheets[0].Cells;
                 cellA.Clear();
-                cellA.ImportDataTable(temp, true, 0, 0, temp.Rows.Count, temp.Columns.Count);
+                cellA.ImportDataTable(dtforExl, true, 0, 0, dtforExl.Rows.Count, dtforExl.Columns.Count);
 
                
 

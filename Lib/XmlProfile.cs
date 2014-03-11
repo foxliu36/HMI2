@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Xml;
 
 //http://support.microsoft.com/kb/307548/zh-tw
+//寫到後面還是直接使用linqtoxml比較快  不需要元件
 namespace Lib
 {
     public class XmlProfile
