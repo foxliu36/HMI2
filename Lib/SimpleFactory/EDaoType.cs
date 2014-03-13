@@ -8,7 +8,7 @@ namespace Lib.SimpleFactory
 {
     public enum EDaoType
     {
-        SQLServer = "SQLServer",
-        SQLite = "SQLite"
+        SQLServer,
+        SQLite
     }
 }

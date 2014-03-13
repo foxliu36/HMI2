@@ -10,21 +10,26 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Aspose.Cells;
+using Lib.OfficialFactory;
+using Lib.SimpleFactory;
 
 /*** Design by fox ***/
 namespace HMI
 {
-    public partial class Form1 : Form
+    public partial class fmSearchClockTime : Form
     {
 
         List<ExportData> ShowList = new List<ExportData>();
         DataTable dtforExl = new DataTable();
         Dao dao = new Dao();
+        //測試factory
+        ADaoFactory AFac = new DaoFactory(EDaoType.SQLServer);
+        
         //匯出excel權限
         int process = 0;
         bool excelright = false;
 
-        public Form1()
+        public fmSearchClockTime()
         {
             InitializeComponent();
         }
@@ -57,8 +62,8 @@ namespace HMI
                 {
                     cmdTxt += @" and EMPLOYEE_EIP = '" + txtEmpNo.Text + "'";
                 }
-
-                DataTable dt = dao.Query(cmdTxt);
+                DataTable dt = AFac.Query(cmdTxt);
+                //DataTable dt = dao.Query(cmdTxt);
 
                 var data = (from q in dt.AsEnumerable()
                            select new { 

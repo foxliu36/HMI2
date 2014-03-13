@@ -1249,6 +1249,12 @@
     <Compile Include="IT\fmRoleMemberControl.Designer.cs">
       <DependentUpon>fmRoleMemberControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="IT\fmTestSQLite.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IT\fmTestSQLite.Designer.cs">
+      <DependentUpon>fmTestSQLite.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UC\UCButton.cs">
@@ -1274,6 +1280,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="IT\fmRoleMemberControl.resx">
       <DependentUpon>fmRoleMemberControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IT\fmTestSQLite.resx">
+      <DependentUpon>fmTestSQLite.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -1326,6 +1335,24 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="SQLite\bin\CompactFramework\SQLite.Interop.066.exp" />
+    <None Include="SQLite\bin\CompactFramework\SQLite.Interop.066.lib" />
+    <None Include="SQLite\bin\Designer\install.exe.config" />
+    <None Include="SQLite\bin\itanium\System.Data.SQLite.exp" />
+    <None Include="SQLite\bin\itanium\System.Data.SQLite.lib" />
+    <None Include="SQLite\bin\itanium\test.exe.config" />
+    <None Include="SQLite\bin\linq\northwindEF.db" />
+    <None Include="SQLite\bin\linq\testlinq.exe.config" />
+    <None Include="SQLite\bin\ManagedOnly\test.exe.config" />
+    <None Include="SQLite\bin\System.Data.SQLite.exp" />
+    <None Include="SQLite\bin\System.Data.SQLite.lib" />
+    <None Include="SQLite\bin\test.exe.config" />
+    <None Include="SQLite\bin\x64\System.Data.SQLite.exp" />
+    <None Include="SQLite\bin\x64\System.Data.SQLite.lib" />
+    <None Include="SQLite\bin\x64\test.exe.config" />
+    <None Include="SQLite\database.db" />
+    <None Include="SQLite\Doc\SQLite.NET.chm" />
+    <None Include="SQLite\testdb.sqlite" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -1359,6 +1386,24 @@
     <Content Include="Addone_dll\Aspose.Cells.dll" />
     <Content Include="Addone_dll\log4net.dll" />
     <Content Include="IT\sql圖片1.png" />
+    <Content Include="SQLite\bin\CompactFramework\SQLite.Interop.066.DLL" />
+    <Content Include="SQLite\bin\CompactFramework\System.Data.SQLite.dll" />
+    <Content Include="SQLite\bin\CompactFramework\testce.exe" />
+    <Content Include="SQLite\bin\Designer\install.exe" />
+    <Content Include="SQLite\bin\Designer\SQLite.Designer.dll" />
+    <Content Include="SQLite\bin\itanium\System.Data.SQLite.DLL" />
+    <Content Include="SQLite\bin\itanium\test.exe" />
+    <Content Include="SQLite\bin\linq\testlinq.exe" />
+    <Content Include="SQLite\bin\ManagedOnly\readme.txt" />
+    <Content Include="SQLite\bin\ManagedOnly\System.Data.SQLite.dll" />
+    <Content Include="SQLite\bin\ManagedOnly\System.Data.SQLite.XML" />
+    <Content Include="SQLite\bin\ManagedOnly\test.exe" />
+    <Content Include="SQLite\bin\System.Data.SQLite.DLL" />
+    <Content Include="SQLite\bin\System.Data.SQLite.Linq.dll" />
+    <Content Include="SQLite\bin\System.Data.SQLite.XML" />
+    <Content Include="SQLite\bin\test.exe" />
+    <Content Include="SQLite\bin\x64\System.Data.SQLite.DLL" />
+    <Content Include="SQLite\bin\x64\test.exe" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

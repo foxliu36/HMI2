@@ -22,7 +22,7 @@ namespace HMI
         {
             if (CheckWindowOpened("fmSearchClockTime"))
             {
-                Form1 f1 = new Form1();
+                fmSearchClockTime f1 = new fmSearchClockTime();
                 f1.MdiParent = this;
                 f1.Show();
             }
@@ -79,6 +79,16 @@ namespace HMI
                 fmRoleMemberControl fmRoleMemberControl = new fmRoleMemberControl();
                 fmRoleMemberControl.MdiParent = this;
                 fmRoleMemberControl.Show();
+            }
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            if (CheckWindowOpened("fmTestSQLite"))
+            {
+                fmTestSQLite fmTestSQLite = new fmTestSQLite();
+                fmTestSQLite.MdiParent = this;
+                fmTestSQLite.Show();
             }
         }
     }

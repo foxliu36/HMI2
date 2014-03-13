@@ -9,6 +9,9 @@ namespace Lib.Factory
 {
     public interface InterfaceDao
     {
+        //設定連線字串
+        void SetConnectionString(string p_ConString);
+
         //查詢
         DataTable Query(string p_Cmd);
 

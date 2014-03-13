@@ -35,9 +35,9 @@
             this.卡鐘舊資料ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.資訊室ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.畫面掛載ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.說明ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.角色成員管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.說明ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -103,17 +103,12 @@
             this.畫面掛載ToolStripMenuItem.Text = "畫面掛載";
             this.畫面掛載ToolStripMenuItem.Click += new System.EventHandler(this.畫面掛載ToolStripMenuItem_Click);
             // 
-            // 說明ToolStripMenuItem
-            // 
-            this.說明ToolStripMenuItem.Name = "說明ToolStripMenuItem";
-            this.說明ToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
-            this.說明ToolStripMenuItem.Text = "說明";
-            // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(174, 24);
-            this.toolStripMenuItem2.Text = "123";
+            this.toolStripMenuItem2.Text = "testSQLite";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // 角色成員管理ToolStripMenuItem
             // 
@@ -121,6 +116,12 @@
             this.角色成員管理ToolStripMenuItem.Size = new System.Drawing.Size(174, 24);
             this.角色成員管理ToolStripMenuItem.Text = "角色成員管理";
             this.角色成員管理ToolStripMenuItem.Click += new System.EventHandler(this.角色成員管理ToolStripMenuItem_Click);
+            // 
+            // 說明ToolStripMenuItem
+            // 
+            this.說明ToolStripMenuItem.Name = "說明ToolStripMenuItem";
+            this.說明ToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+            this.說明ToolStripMenuItem.Text = "說明";
             // 
             // FormMain
             // 

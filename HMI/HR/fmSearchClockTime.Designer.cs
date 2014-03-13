@@ -1,6 +1,6 @@
 ﻿namespace HMI
 {
-    partial class Form1
+    partial class fmSearchClockTime
     {
         /// <summary>
         /// 設計工具所需的變數。

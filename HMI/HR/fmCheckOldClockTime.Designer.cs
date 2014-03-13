@@ -32,15 +32,15 @@
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.hRDataSet = new HMI.HRDataSet();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.userControl11 = new HMI.PublicUnit.UserControl1();
-            this.tBHRCLOCKTIMEBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tB_HR_CLOCKTIMETableAdapter = new HMI.HRDataSetTableAdapters.TB_HR_CLOCKTIMETableAdapter();
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.eMPLOYEEIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.eMPLOYEEEIPDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dATETIMEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tERMINALIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vERIFICATIONSOURCEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tBHRCLOCKTIMEBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.userControl11 = new HMI.PublicUnit.UserControl1();
+            this.tB_HR_CLOCKTIMETableAdapter = new HMI.HRDataSetTableAdapters.TB_HR_CLOCKTIMETableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hRDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -79,23 +79,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(862, 415);
             this.dataGridView1.TabIndex = 1;
             // 
-            // userControl11
-            // 
-            this.userControl11.Location = new System.Drawing.Point(11, 112);
-            this.userControl11.Margin = new System.Windows.Forms.Padding(2);
-            this.userControl11.Name = "userControl11";
-            this.userControl11.Size = new System.Drawing.Size(520, 67);
-            this.userControl11.TabIndex = 2;
-            // 
-            // tBHRCLOCKTIMEBindingSource
-            // 
-            this.tBHRCLOCKTIMEBindingSource.DataMember = "TB_HR_CLOCKTIME";
-            this.tBHRCLOCKTIMEBindingSource.DataSource = this.bindingSource1;
-            // 
-            // tB_HR_CLOCKTIMETableAdapter
-            // 
-            this.tB_HR_CLOCKTIMETableAdapter.ClearBeforeFill = true;
-            // 
             // iDDataGridViewTextBoxColumn
             // 
             this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
@@ -131,6 +114,23 @@
             this.vERIFICATIONSOURCEDataGridViewTextBoxColumn.DataPropertyName = "VERIFICATION_SOURCE";
             this.vERIFICATIONSOURCEDataGridViewTextBoxColumn.HeaderText = "VERIFICATION_SOURCE";
             this.vERIFICATIONSOURCEDataGridViewTextBoxColumn.Name = "vERIFICATIONSOURCEDataGridViewTextBoxColumn";
+            // 
+            // tBHRCLOCKTIMEBindingSource
+            // 
+            this.tBHRCLOCKTIMEBindingSource.DataMember = "TB_HR_CLOCKTIME";
+            this.tBHRCLOCKTIMEBindingSource.DataSource = this.bindingSource1;
+            // 
+            // userControl11
+            // 
+            this.userControl11.Location = new System.Drawing.Point(23, 94);
+            this.userControl11.Margin = new System.Windows.Forms.Padding(2);
+            this.userControl11.Name = "userControl11";
+            this.userControl11.Size = new System.Drawing.Size(391, 67);
+            this.userControl11.TabIndex = 2;
+            // 
+            // tB_HR_CLOCKTIMETableAdapter
+            // 
+            this.tB_HR_CLOCKTIMETableAdapter.ClearBeforeFill = true;
             // 
             // fmCheckOldClockTime
             // 
