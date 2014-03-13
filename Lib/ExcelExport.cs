@@ -146,7 +146,6 @@ namespace Lib
                         worksheet.Cells[1, n + 1] = CNames[n];
                     }
 
-
                     Microsoft.Office.Interop.Excel.Range rangeinfo = worksheet.Range["C1", "C" + p_dtL[i].Rows.Count + 1];
                     Microsoft.Office.Interop.Excel.Range rangeinfo2 = worksheet.Range["D1", "D" + p_dtL[i].Rows.Count + 1];
                     rangeinfo.NumberFormat = "0000";

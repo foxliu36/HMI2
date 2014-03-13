@@ -45,10 +45,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="Factory\ConnectionFactory.cs" />
+    <Compile Include="Factory\DaoFactory.cs" />
     <Compile Include="Dao.cs" />
     <Compile Include="ExcelExport.cs" />
-    <Compile Include="Factory\InterfaceConnectionFactory.cs" />
+    <Compile Include="Factory\InterfaceDao.cs" />
+    <Compile Include="Factory\SqlServerDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XmlProfile.cs" />
   </ItemGroup>

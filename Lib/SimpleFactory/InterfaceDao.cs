@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Lib.Factory
 {
-    interface InterfaceConnectionFactory
+    public interface InterfaceDao
     {
         //查詢
-        virtual DataTable Query(string p_Cmd);
+        DataTable Query(string p_Cmd);
 
         //執行新刪修
-        virtual int ExcuteNonQuery(string p_Cmd);
+        int ExcuteNonQuery(string p_Cmd);
     }
 }

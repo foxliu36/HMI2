@@ -3,21 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Lib.Factory;
 
-namespace Lib
+namespace Lib.Factory
 {
-    class ConnectionFactory : InterfaceConnectionFactory
+    public class SqlServerDao : InterfaceDao
     {
-
-
-
-        System.Data.DataTable InterfaceConnectionFactory.Query(string p_Cmd)
+        public System.Data.DataTable Query(string p_Cmd)
         {
             throw new NotImplementedException();
         }
 
-        int InterfaceConnectionFactory.ExcuteNonQuery(string p_Cmd)
+        public int ExcuteNonQuery(string p_Cmd)
         {
             throw new NotImplementedException();
         }
