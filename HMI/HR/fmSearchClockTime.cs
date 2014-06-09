@@ -10,8 +10,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Aspose.Cells;
+using HMI.Entity;
 using Lib.OfficialFactory;
 using Lib.SimpleFactory;
+using HMI.Model;
 
 /*** Design by fox ***/
 namespace HMI
@@ -22,8 +24,6 @@ namespace HMI
         List<ExportData> ShowList = new List<ExportData>();
         DataTable dtforExl = new DataTable();
         Dao dao = new Dao();
-        //測試factory
-        ADaoFactory AFac = new DaoFactory(EDaoType.SQLServer);
         
         //匯出excel權限
         int process = 0;
@@ -62,8 +62,8 @@ namespace HMI
                 {
                     cmdTxt += @" and EMPLOYEE_EIP = '" + txtEmpNo.Text + "'";
                 }
-                DataTable dt = AFac.Query(cmdTxt);
-                //DataTable dt = dao.Query(cmdTxt);
+
+                DataTable dt = dao.Query(cmdTxt);
 
                 var data = (from q in dt.AsEnumerable()
                            select new { 
@@ -115,7 +115,7 @@ namespace HMI
                             {
                                 員工卡號 = "#" + p.Field<string>("EMPLOYEE_ID").PadLeft(10, '0'),
                                 刷卡日期 = p.Field<DateTime>("DATE_TIME_MAX").ToString("yyyy-MM-dd").Replace("-", ""),
-                                刷卡時間 = p.Field<DateTime>("DATE_TIME_MAX").ToString("HH:mm").Replace(":", "").PadLeft(4, '0'),
+                                刷卡時間 = p.Field<DateTime>("DATE_TIME_MAX").AddMinutes(1).ToString("HH:mm").Replace(":", "").PadLeft(4, '0'),
                                 進出別 = p.Field<string>("DATE_TIME_TYPE"),
                                 員工編號 = p.Field<string>("EMPLOYEE_EIP")
                             });
@@ -129,12 +129,27 @@ namespace HMI
                 {
                     dataGridView1.DataSource = data.ToList<ExportData>();
                     this.ShowList = data.ToList<ExportData>();
-                    this.dtforExl = ConvertToDataTable<ExportData>(data.ToList<ExportData>());
+                    this.dtforExl = ConvertToDataTable<ExportData>(
+                                                                    data.Select(p => new ExportData { 
+                                                                        員工卡號 = p.員工卡號, 
+                                                                        刷卡日期 = p.刷卡日期, 
+                                                                        刷卡時間 = p.刷卡時間, 
+                                                                        進出別 = p.進出別 
+                                                                    }).ToList<ExportData>()
+                                                                    );
                 }
                 else {
                     dataGridView1.DataSource = databyEmpNo.ToList<ExportData>();
                     this.ShowList = databyEmpNo.ToList<ExportData>();
-                    this.dtforExl = ConvertToDataTable<ExportData>(databyEmpNo.ToList<ExportData>());
+                    this.dtforExl = ConvertToDataTable<ExportData>(
+                                                                    databyEmpNo
+                                                                    .Select(p => new ExportData { 
+                                                                        員工卡號 = p.員工卡號, 
+                                                                        刷卡日期 = p.刷卡日期, 
+                                                                        刷卡時間 = p.刷卡時間, 
+                                                                        進出別 = p.進出別 
+                                                                    }).ToList<ExportData>()
+                                                                    );
                 }
                 
             }
@@ -144,10 +159,32 @@ namespace HMI
             }
         }
 
-        //個人出勤查詢
+        //單人匯出
         private void btnPersonalCheck_Click(object sender, EventArgs e)
         {
+            if (txtEmpNo.Text.Equals(""))
+            {
+                MessageBox.Show("請輸入員編");
+                return;
+            }
             lockScreen();
+            
+            List<TB_HR_JOBTIME> lJobtime = new List<TB_HR_JOBTIME>();
+
+            //查詢是否排休
+            using(var en = new UOFEntities())
+            {
+                lJobtime = (from q in en.TB_HR_JOBTIME
+                            where txtEmpNo.Text.Equals(q.SMID)
+                            select q).ToList<TB_HR_JOBTIME>();
+            }
+
+            List<DateTime> lvacation = new List<DateTime>();
+
+            foreach (var item in lJobtime)
+            {
+                lvacation.Add(new DateTime(Convert.ToInt16(item.JOB_YEAR), Convert.ToInt16(item.JOB_MONTH), Convert.ToInt16(item.JOB_DAY)));
+            }
 
             if (txtEmpNo.Text != "")
             {
@@ -177,11 +214,20 @@ namespace HMI
                     foreach (PernalData item in data)
                     {
                         totalList.Add(item);
+
+                        //檢查有沒有休假
+                        int check = lvacation.Where(p => p.Equals(DateTime.Parse(item.刷卡日期))).Count();
+
+                        if (cbvacation.Checked && check > 0)
+                        {
+                            totalList.Remove(item);
+                        }
                     }
 
                     dtstart = dtstart.AddDays(1);
                 }
                 unlockScreen();
+
                 dataGridView1.DataSource = totalList;
                 dtforExl = ConvertToDataTable<PernalData>(totalList);
 
@@ -225,7 +271,8 @@ namespace HMI
 
                     Lib.ExcelExport ex = new Lib.ExcelExport();
                     ex.SetColumeName(new string[] { "員工卡號", "刷卡日期", "刷卡時間", "進出別" });
-                    
+                    ex.SetNumberFormat("C1", "C" + dtforExl.Rows.Count + 1, "0000");
+                    ex.SetNumberFormat("D1", "D" + dtforExl.Rows.Count + 1, "00");
                     //ex.myDGV = dataGridView1;
                     ex.ExportExcel(this.dtforExl);
 
@@ -242,6 +289,7 @@ namespace HMI
             }
             catch (Exception ex)
             {
+                unlockScreen();
                 MessageBox.Show(ex.ToString());
             }
         }
@@ -276,16 +324,14 @@ namespace HMI
                                         刷卡日期 = q.Field<DateTime>("DATE_TIME_MIN").ToString("yyyy-MM-dd").Replace("-", ""),
                                         刷卡時間 = q.Field<DateTime>("DATE_TIME_MIN").ToString("HH:mm").Replace(":", "").PadLeft(4, '0'),
                                         進出別 = q.Field<string>("DATE_TIME_TYPE"),
-                                        員工編號 = q.Field<string>("EMPLOYEE_EIP")
                                     }).Union(
                                     from p in dt02.AsEnumerable()
                                     select new ExportData
                                     {
                                         員工卡號 = "#" + p.Field<string>("EMPLOYEE_ID").PadLeft(10, '0'),
                                         刷卡日期 = p.Field<DateTime>("DATE_TIME_MAX").ToString("yyyy-MM-dd").Replace("-", ""),
-                                        刷卡時間 = p.Field<DateTime>("DATE_TIME_MAX").ToString("HH:mm").Replace(":", "").PadLeft(4, '0'),
+                                        刷卡時間 = p.Field<DateTime>("DATE_TIME_MAX").AddMinutes(1).ToString("HH:mm").Replace(":", "").PadLeft(4, '0'),
                                         進出別 = p.Field<string>("DATE_TIME_TYPE"),
-                                        員工編號 = p.Field<string>("EMPLOYEE_EIP")
                                     });
 
                         dtList.Add(ConvertToDataTable<ExportData>(data.ToList<ExportData>()));
@@ -295,7 +341,7 @@ namespace HMI
                     Lib.ExcelExport ex = new Lib.ExcelExport();
                     ex.SetColumeName(new string[] { "員工卡號", "刷卡日期", "刷卡時間", "進出別" });
                     ex.MiltiExportExcel(dtList, "出勤_管理者");
-
+                    
                     unlockScreen();
                 }
                 else
@@ -335,32 +381,45 @@ namespace HMI
                 ////產生檔案
                 //MemoryStream stream = new MemoryStream();
                 //newWbookNur.Save(stream, FileFormatType.Default);
+                #region "aspose.dll"
+               
+                //Workbook newbook = new Workbook();
 
-                Workbook newbook = new Workbook();
+                //newbook.Open(Application.StartupPath +"\\HTReport.xls");
 
-                newbook.Open(Application.StartupPath +"\\HTReport.xls");
+                //newbook.Worksheets.Add();
+                //newbook.Worksheets[0].Name = "個人出勤";
 
-                newbook.Worksheets.Add();
-                newbook.Worksheets[0].Name = "個人出勤";
-
-                Cells cellA = newbook.Worksheets[0].Cells;
-                cellA.Clear();
-                cellA.ImportDataTable(dtforExl, true, 0, 0, dtforExl.Rows.Count, dtforExl.Columns.Count);
+                //Cells cellA = newbook.Worksheets[0].Cells;
+                //cellA.Clear();
+                //cellA.ImportDataTable(dtforExl, true, 0, 0, dtforExl.Rows.Count, dtforExl.Columns.Count);
 
                
 
-                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-                saveFileDialog1.Filter = "(*.xls)";
+                //SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                //saveFileDialog1.Filter = "(*.xls)";
 
-                if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    MemoryStream stream = new MemoryStream();
-                    //newbook.Save(stream, FileFormatType.Default);
-                    newbook.Save(saveFileDialog1.FileName, FileFormatType.Default);
+                //if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                //{
+                //    MemoryStream stream = new MemoryStream();
+                //    //newbook.Save(stream, FileFormatType.Default);
+                //    newbook.Save(saveFileDialog1.FileName, FileFormatType.Default);
 
-                    //System.Diagnostics.Process.Start(saveFileDialog1.FileName);
-                }
+                //    //System.Diagnostics.Process.Start(saveFileDialog1.FileName);
+                //}
+                #endregion
 
+                lockScreen();
+
+                Lib.ExcelExport ex = new Lib.ExcelExport();
+                ex.SetColumeName(new string[] { "刷卡日期", "原編", "部門單位", "上班時間", "下班時間" });
+                //ex.worksheet.Name = "123456";
+                ex.SetNumberFormat("D1", "D" + dtforExl.Rows.Count + 1, "0000");
+                ex.SetNumberFormat("E1", "E" + dtforExl.Rows.Count + 1, "0000");
+                //ex.myDGV = dataGridView1;
+                ex.ExportExcel(this.dtforExl);
+
+                unlockScreen();
             }
             catch (Exception ex)
             {
@@ -421,84 +480,7 @@ namespace HMI
             return dt;
         }
 
-        //顯示物件為中文是因為要讓datagridview 上面的header是中文的,如果使用增加datagridview column 點選第一次顯示正常
-        //再點其他功能後再點回去就會變回原來的英文
-        class ExportData {
-            private string _EmpCNo;
-            private string _Date;
-            private string _Time;
-            private string _Type;
-            private string _EmpNo;
-
-            public string 員工卡號
-            {
-                get { return _EmpCNo; }
-                set { _EmpCNo = value; }
-            }
-
-            public string 刷卡日期
-            {
-                get { return _Date; }
-                set { _Date = value; }
-            }
-
-            public string 刷卡時間
-            {
-                get { return _Time; }
-                set { _Time = value; }
-            }
-
-            public string 進出別
-            {
-                get { return _Type; }
-                set { _Type = value; }
-            }
-
-            public string 員工編號
-            {
-                get { return _EmpNo; }
-                set { _EmpNo = value; }
-            }
-        }
-
-        class PernalData {
-
-            private string _Eip;
-            private string _GName;
-            private string _Date;
-            private string _MinD;
-            private string _MaxD;
-            
-
-            public string 刷卡日期 
-            {
-                get { return _Date; }
-                set { _Date = value; }
-            }
-
-            public string 原編 
-            {
-                get { return _Eip; }
-                set { _Eip = value; }
-            }
-            public string 部門單位
-            {
-                get { return _GName; }
-                set { _GName = value; }
-            }
-            public string 上班時間
-            {
-                get { return _MinD; }
-                set { _MinD = value; }
-            }
-
-            public string 下班時間
-            {
-                get { return _MaxD; }
-                set { _MaxD = value; }
-            }
-        }
-
+        
         private void dtpStart_ValueChanged(object sender, EventArgs e)
         {
             dtpEnd.Value = dtpStart.Value;

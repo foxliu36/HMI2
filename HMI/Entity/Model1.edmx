@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="UOFModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="UOFModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="UOFModelStoreContainer">
           <EntitySet Name="Log" EntityType="UOFModel.Store.Log" store:Type="Tables" store:Schema="dbo" store:Name="Log">
             <DefiningQuery>SELECT 
@@ -4351,6 +4351,7 @@
           <Property Name="DATE_TIME" Type="datetime" />
           <Property Name="TERMINAL_ID" Type="nvarchar" MaxLength="10" />
           <Property Name="VERIFICATION_SOURCE" Type="nvarchar" MaxLength="10" />
+          <Property Name="ARRIVAL_TIME" Type="datetime" />
         </EntityType>
         <EntityType Name="TB_HR_JOBTIME">
           <Key>
@@ -4423,6 +4424,7 @@
           <Property Name="EDIT_DATE" Type="nvarchar" MaxLength="20" />
           <Property Name="YEAR" Type="nvarchar" MaxLength="4" />
           <Property Name="TASK_ID" Type="nvarchar" MaxLength="50" />
+          <Property Name="SIGNER" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="TB_HR_PERT_CAR">
           <Key>
@@ -6450,136 +6452,7 @@
           <Property Name="TRANSFER_FLAG" Type="bit" />
           <Property Name="TRANSFER_LOG" Type="xml" />
         </EntityType>
-        <!--產生期間發現錯誤:
-      警告 6013: 資料表/檢視 'UOF.dbo.RAV4' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-      
-      <EntityType Name="RAV4">
-        <Property Name="車種" Type="nvarchar" MaxLength="255" />
-        <Property Name="車型" Type="nvarchar" MaxLength="255" />
-        <Property Name="SFX" Type="nvarchar" MaxLength="255" />
-        <Property Name="車價" Type="float" />
-        <Property Name="年式" Type="nvarchar" MaxLength="255" />
-      </EntityType>
-      產生期間發現錯誤:
-      警告 6013: 資料表/檢視 'UOF.dbo.TB_EIP_SCH_MEETING_FILE_STORE' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-      
-      <EntityType Name="TB_EIP_SCH_MEETING_FILE_STORE">
-        <Property Name="FILE_GROUP_ID" Type="nvarchar" MaxLength="50" />
-        <Property Name="FILE_ID" Type="nvarchar" MaxLength="50" />
-        <Property Name="FILE_SEQ" Type="nvarchar" MaxLength="10" />
-        <Property Name="STATUS" Type="bit" />
-        <Property Name="STATUS_DESCRIPTION" Type="nvarchar(max)" />
-        <Property Name="CREATE_DATE" Type="datetime" />
-        <Property Name="CREATE_USER_GUID" Type="nvarchar" MaxLength="50" />
-        <Property Name="IS_DELETE" Type="bit" />
-        <Property Name="DELETE_DATE" Type="datetime" />
-        <Property Name="DELETE_USER_GUID" Type="nvarchar" MaxLength="50" />
-      </EntityType>
-      產生期間發現錯誤:
-      警告 6013: 資料表/檢視 'UOF.dbo.TB_EIP_SCH_MEETING_LOG' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-      
-      <EntityType Name="TB_EIP_SCH_MEETING_LOG">
-        <Property Name="MEETING_GUID" Type="nvarchar" MaxLength="50" />
-        <Property Name="PATTERN" Type="nvarchar" MaxLength="6" />
-        <Property Name="LIVE_MEETING_LOCATION" Type="nvarchar" MaxLength="255" />
-        <Property Name="PARAM_ID" Type="nvarchar" MaxLength="50" />
-        <Property Name="PARAM_PASSWORD" Type="nvarchar" MaxLength="50" />
-        <Property Name="PARAM_MEETING_NAME" Type="nvarchar" MaxLength="255" />
-        <Property Name="PARAM_MEETING_DESC" Type="nvarchar(max)" />
-        <Property Name="PARAM_CHAIRMAN" Type="nvarchar" MaxLength="50" />
-        <Property Name="PARAM_ATTENDEES" Type="xml" />
-        <Property Name="PARAM_START_TIME_STRING" Type="datetime" />
-        <Property Name="PARAM_END_TIME_STRING" Type="datetime" />
-        <Property Name="STATUS" Type="bit" />
-        <Property Name="STATUS_DESCRIPTION" Type="nvarchar(max)" />
-        <Property Name="MEETING_ID" Type="nvarchar" MaxLength="255" />
-        <Property Name="CREATE_TIME" Type="datetime" />
-      </EntityType>
-      產生期間發現錯誤:
-      警告 6013: 資料表/檢視 'UOF.dbo.TB_HR_ASSESS_STAFFDETAIL' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-      
-      <EntityType Name="TB_HR_ASSESS_STAFFDETAIL">
-        <Property Name="DEL_GUID" Type="nvarchar" MaxLength="50" />
-        <Property Name="GUID" Type="nvarchar" MaxLength="50" />
-        <Property Name="SMID" Type="nvarchar" MaxLength="10" />
-        <Property Name="ASSESS_TYPE" Type="nvarchar" MaxLength="10" />
-        <Property Name="YEAR" Type="nvarchar" MaxLength="10" />
-        <Property Name="Num" Type="int" />
-        <Property Name="PLAN_DRAW" Type="nvarchar" MaxLength="250" />
-        <Property Name="PLAN_TARGET" Type="nvarchar" MaxLength="250" />
-        <Property Name="PLAN_KPI" Type="nvarchar" MaxLength="250" />
-      </EntityType>
-      產生期間發現錯誤:
-      警告 6013: 資料表/檢視 'UOF.dbo.TB_HR_CS' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-      
-      <EntityType Name="TB_HR_CS">
-        <Property Name="SMID" Type="varchar" MaxLength="10" />
-        <Property Name="TOTAL" Type="varchar" MaxLength="10" />
-        <Property Name="TARGED" Type="varchar" MaxLength="10" />
-      </EntityType>
-      產生期間發現錯誤:
-      警告 6013: 資料表/檢視 'UOF.dbo.TB_HR_NS_temp' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-      
-      <EntityType Name="TB_HR_NS_temp">
-        <Property Name="ACCOUNT" Type="nvarchar" MaxLength="50" />
-        <Property Name="Name" Type="nvarchar" MaxLength="50" />
-        <Property Name="CLASS" Type="nvarchar" MaxLength="50" />
-        <Property Name="MOVE_DATE" Type="nvarchar" MaxLength="50" />
-        <Property Name="MOVE_TYPE" Type="nvarchar" MaxLength="50" />
-        <Property Name="MEMO" Type="text" />
-        <Property Name="Group_Name" Type="nvarchar" MaxLength="50" />
-        <Property Name="TITLE_NAME" Type="nvarchar" MaxLength="50" />
-        <Property Name="OPTION1" Type="nvarchar" MaxLength="50" />
-        <Property Name="Base_Salary" Type="float" />
-        <Property Name="Food_Allowance" Type="float" />
-        <Property Name="Full_Bonus" Type="float" />
-        <Property Name="Position_Bonus" Type="float" />
-        <Property Name="Learder_Bonus" Type="float" />
-        <Property Name="Skill_Bonus" Type="float" />
-        <Property Name="License_Bonus" Type="float" />
-        <Property Name="Experience_Bonus" Type="float" />
-        <Property Name="Other_Bonus" Type="float" />
-        <Property Name="Bonus_Sum" Type="float" />
-        <Property Name="Creat_Date" Type="nvarchar" MaxLength="50" />
-      </EntityType>
-      產生期間發現錯誤:
-      警告 6013: 資料表/檢視 'UOF.dbo.TB_HR_STAFF_CAR' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-      
-      <EntityType Name="TB_HR_STAFF_CAR">
-        <Property Name="SMID" Type="varchar" MaxLength="10" />
-        <Property Name="TOTAL" Type="varchar" MaxLength="10" />
-        <Property Name="TARGED" Type="varchar" MaxLength="10" />
-      </EntityType>
-      產生期間發現錯誤:
-      警告 6013: 資料表/檢視 'UOF.dbo.TB_WKF_FVR_SITE_DLL' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-      
-      <EntityType Name="TB_WKF_FVR_SITE_DLL">
-        <Property Name="FORM_VERSION_ID" Type="nvarchar" MaxLength="50" />
-        <Property Name="SITE_ID" Type="nvarchar" MaxLength="50" />
-        <Property Name="PARENT_SITE_ID" Type="nvarchar" MaxLength="50" />
-        <Property Name="VALIDATOR_DLL_ID" Type="nvarchar" MaxLength="50" />
-        <Property Name="NORMAL_DLL_ID" Type="nvarchar" MaxLength="50" />
-      </EntityType>
-      產生期間發現錯誤:
-      警告 6013: 資料表/檢視 'UOF.dbo.TB_WKF_TASK_IQY_NODE' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-      
-      <EntityType Name="TB_WKF_TASK_IQY_NODE">
-        <Property Name="IQY_ID" Type="nvarchar" MaxLength="50" />
-        <Property Name="IQY_CHECKED" Type="int" />
-        <Property Name="IQY_COMMENT" Type="nvarchar(max)" />
-        <Property Name="IQY_SUPERIOR" Type="xml" />
-        <Property Name="IQY_PEOPLE" Type="xml" />
-        <Property Name="IQY_DEFAULT_PEOPLE" Type="xml" />
-      </EntityType>
-      產生期間發現錯誤:
-      警告 6013: 資料表/檢視 'UOF.dbo.tbKDERROR' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
-      
-      <EntityType Name="tbKDERROR">
-        <Property Name="NAME" Type="nvarchar" MaxLength="50" />
-        <Property Name="MOBILE" Type="nvarchar" MaxLength="50" />
-      </EntityType>-->
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="UOFModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -10587,6 +10460,7 @@
           <Property Name="DATE_TIME" Type="DateTime" Precision="3" />
           <Property Name="TERMINAL_ID" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
           <Property Name="VERIFICATION_SOURCE" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Type="DateTime" Name="ARRIVAL_TIME" Precision="3" />
         </EntityType>
         <EntityType Name="TB_HR_JOBTIME">
           <Key>
@@ -10656,6 +10530,7 @@
           <Property Name="EDIT_DATE" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
           <Property Name="YEAR" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
           <Property Name="TASK_ID" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="SIGNER" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TB_HR_PERT_CAR">
           <Key>
@@ -16383,6 +16258,7 @@
           <EntitySetMapping Name="TB_HR_CLOCKTIME">
             <EntityTypeMapping TypeName="UOFModel.TB_HR_CLOCKTIME">
               <MappingFragment StoreEntitySet="TB_HR_CLOCKTIME">
+                <ScalarProperty Name="ARRIVAL_TIME" ColumnName="ARRIVAL_TIME" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
                 <ScalarProperty Name="EMPLOYEE_EIP" ColumnName="EMPLOYEE_EIP" />
@@ -16448,6 +16324,7 @@
           <EntitySetMapping Name="TB_HR_PERT">
             <EntityTypeMapping TypeName="UOFModel.TB_HR_PERT">
               <MappingFragment StoreEntitySet="TB_HR_PERT">
+                <ScalarProperty Name="SIGNER" ColumnName="SIGNER" />
                 <ScalarProperty Name="PERTNO" ColumnName="PERTNO" />
                 <ScalarProperty Name="GUID" ColumnName="GUID" />
                 <ScalarProperty Name="SMID" ColumnName="SMID" />

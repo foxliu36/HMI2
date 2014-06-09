@@ -33,11 +33,13 @@
             this.卡鐘資料ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.brabrabraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.卡鐘舊資料ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.延遲的卡鐘資料ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.資訊室ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.畫面掛載ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.角色成員管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.說明ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.加入業代店數ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,7 +62,8 @@
             this.人資ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.卡鐘資料ToolStripMenuItem,
             this.brabrabraToolStripMenuItem,
-            this.卡鐘舊資料ToolStripMenuItem});
+            this.卡鐘舊資料ToolStripMenuItem,
+            this.延遲的卡鐘資料ToolStripMenuItem});
             this.人資ToolStripMenuItem.Name = "人資ToolStripMenuItem";
             this.人資ToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.人資ToolStripMenuItem.Text = "人資";
@@ -68,23 +71,30 @@
             // 卡鐘資料ToolStripMenuItem
             // 
             this.卡鐘資料ToolStripMenuItem.Name = "卡鐘資料ToolStripMenuItem";
-            this.卡鐘資料ToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
+            this.卡鐘資料ToolStripMenuItem.Size = new System.Drawing.Size(190, 24);
             this.卡鐘資料ToolStripMenuItem.Text = "卡鐘資料";
             this.卡鐘資料ToolStripMenuItem.Click += new System.EventHandler(this.卡鐘資料ToolStripMenuItem_Click);
             // 
             // brabrabraToolStripMenuItem
             // 
             this.brabrabraToolStripMenuItem.Name = "brabrabraToolStripMenuItem";
-            this.brabrabraToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
+            this.brabrabraToolStripMenuItem.Size = new System.Drawing.Size(190, 24);
             this.brabrabraToolStripMenuItem.Text = "brabrabra";
             this.brabrabraToolStripMenuItem.Click += new System.EventHandler(this.brabrabraToolStripMenuItem_Click);
             // 
             // 卡鐘舊資料ToolStripMenuItem
             // 
             this.卡鐘舊資料ToolStripMenuItem.Name = "卡鐘舊資料ToolStripMenuItem";
-            this.卡鐘舊資料ToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
+            this.卡鐘舊資料ToolStripMenuItem.Size = new System.Drawing.Size(190, 24);
             this.卡鐘舊資料ToolStripMenuItem.Text = "卡鐘舊資料";
             this.卡鐘舊資料ToolStripMenuItem.Click += new System.EventHandler(this.卡鐘舊資料ToolStripMenuItem_Click);
+            // 
+            // 延遲的卡鐘資料ToolStripMenuItem
+            // 
+            this.延遲的卡鐘資料ToolStripMenuItem.Name = "延遲的卡鐘資料ToolStripMenuItem";
+            this.延遲的卡鐘資料ToolStripMenuItem.Size = new System.Drawing.Size(190, 24);
+            this.延遲的卡鐘資料ToolStripMenuItem.Text = "延遲的卡鐘資料";
+            this.延遲的卡鐘資料ToolStripMenuItem.Click += new System.EventHandler(this.延遲的卡鐘資料ToolStripMenuItem_Click);
             // 
             // 資訊室ToolStripMenuItem
             // 
@@ -119,9 +129,18 @@
             // 
             // 說明ToolStripMenuItem
             // 
+            this.說明ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.加入業代店數ToolStripMenuItem});
             this.說明ToolStripMenuItem.Name = "說明ToolStripMenuItem";
-            this.說明ToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
-            this.說明ToolStripMenuItem.Text = "說明";
+            this.說明ToolStripMenuItem.Size = new System.Drawing.Size(85, 24);
+            this.說明ToolStripMenuItem.Text = "高智洗車";
+            // 
+            // 加入業代店數ToolStripMenuItem
+            // 
+            this.加入業代店數ToolStripMenuItem.Name = "加入業代店數ToolStripMenuItem";
+            this.加入業代店數ToolStripMenuItem.Size = new System.Drawing.Size(174, 24);
+            this.加入業代店數ToolStripMenuItem.Text = "加入業代店數";
+            this.加入業代店數ToolStripMenuItem.Click += new System.EventHandler(this.加入業代店數ToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -153,5 +172,7 @@
         private System.Windows.Forms.ToolStripMenuItem 畫面掛載ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem 角色成員管理ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 加入業代店數ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 延遲的卡鐘資料ToolStripMenuItem;
     }
 }

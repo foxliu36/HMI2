@@ -11,6 +11,8 @@ namespace Lib.SimpleFactory
 {
     //http://roach0426.pixnet.net/blog/post/965051-%E7%94%A8c%23%E4%BE%86%E8%AE%80%E6%94%9C%E5%B8%B6%E5%9E%8B%E8%B3%87%E6%96%99%E5%BA%ABsqlite
     //http://www.iteye.com/topic/114055
+    //解決sqlite不能再.net framework 4.0執行請看下面
+    //http://www.dotblogs.com.tw/sam319/archive/2010/06/04/15626.aspx
     public class SQLiteDao : InterfaceDao
     {
         private SQLiteConnection sqlite_con = new SQLiteConnection();

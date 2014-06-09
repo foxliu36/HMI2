@@ -42,10 +42,11 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.lbStatus = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnPersonalToExcel = new System.Windows.Forms.Button();
             this.btnToMultiExcel = new System.Windows.Forms.Button();
             this.lbRowCount = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.cbvacation = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -172,16 +173,15 @@
             this.lbStatus.Size = new System.Drawing.Size(0, 12);
             this.lbStatus.TabIndex = 12;
             // 
-            // button1
+            // btnPersonalToExcel
             // 
-            this.button1.Location = new System.Drawing.Point(418, 107);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 37);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "單人匯出Excel";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
-            this.button1.Click += new System.EventHandler(this.btnPersonalToExcel_Click);
+            this.btnPersonalToExcel.Location = new System.Drawing.Point(418, 107);
+            this.btnPersonalToExcel.Name = "btnPersonalToExcel";
+            this.btnPersonalToExcel.Size = new System.Drawing.Size(75, 37);
+            this.btnPersonalToExcel.TabIndex = 10;
+            this.btnPersonalToExcel.Text = "單人匯出Excel";
+            this.btnPersonalToExcel.UseVisualStyleBackColor = true;
+            this.btnPersonalToExcel.Click += new System.EventHandler(this.btnPersonalToExcel_Click);
             // 
             // btnToMultiExcel
             // 
@@ -213,17 +213,28 @@
             this.label4.TabIndex = 15;
             this.label4.Text = "共有資料:";
             // 
-            // Form1
+            // cbvacation
+            // 
+            this.cbvacation.AutoSize = true;
+            this.cbvacation.Location = new System.Drawing.Point(383, 77);
+            this.cbvacation.Name = "cbvacation";
+            this.cbvacation.Size = new System.Drawing.Size(72, 16);
+            this.cbvacation.TabIndex = 16;
+            this.cbvacation.Text = "結合排休";
+            this.cbvacation.UseVisualStyleBackColor = true;
+            // 
+            // fmSearchClockTime
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(886, 577);
+            this.Controls.Add(this.cbvacation);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lbRowCount);
             this.Controls.Add(this.btnToMultiExcel);
             this.Controls.Add(this.lbStatus);
             this.Controls.Add(this.progressBar1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnPersonalToExcel);
             this.Controls.Add(this.btnPersonalCheck);
             this.Controls.Add(this.btnExportToExcel);
             this.Controls.Add(this.btnExport);
@@ -235,7 +246,7 @@
             this.Controls.Add(this.dtpEnd);
             this.Controls.Add(this.dtpStart);
             this.Controls.Add(this.dataGridView1);
-            this.Name = "Form1";
+            this.Name = "fmSearchClockTime";
             this.Text = "卡鐘資料";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -260,10 +271,11 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label lbStatus;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnPersonalToExcel;
         private System.Windows.Forms.Button btnToMultiExcel;
         private System.Windows.Forms.Label lbRowCount;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox cbvacation;
     }
 }
 

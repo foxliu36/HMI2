@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using HMI.IT;
+using HMI.WashCar;
+using HMI.HR;
 
 namespace HMI
 {
@@ -91,5 +93,27 @@ namespace HMI
                 fmTestSQLite.Show();
             }
         }
+
+        private void 加入業代店數ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (CheckWindowOpened("fmKGPointAdd"))
+            {
+                fmKGPointAdd fmKGPointAdd = new fmKGPointAdd();
+                fmKGPointAdd.MdiParent = this;
+                fmKGPointAdd.Show();
+            }
+        }
+
+        private void 延遲的卡鐘資料ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (CheckWindowOpened("frmSearchDelayClockTime"))
+            {
+                frmSearchDelayClockTime frmSearchDelayClockTime = new frmSearchDelayClockTime();
+                frmSearchDelayClockTime.MdiParent = this;
+                frmSearchDelayClockTime.Show();
+            }
+        }
+
+        
     }
 }

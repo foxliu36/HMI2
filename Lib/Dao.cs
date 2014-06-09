@@ -18,31 +18,44 @@ namespace HMI
             con.ConnectionString = "Data Source = 172.26.100.8;Initial Catalog=UOF;User ID=sa;Password=hp1020.;";
         }
 
+        public Dao(string p_Con) {
+            con.ConnectionString = p_Con;
+        }
+
         //查詢
         public DataTable Query(string command) {
-
-            try {
+            SqlCommand cmd = new SqlCommand();
+            try
+            {
                 DataSet ds = new DataSet();
                 con.State.ToString();
-                con.Open();
+                //SqlDataAdapter會自己開啟關閉con
+                //con.Open();
                 string sqlstr = command;
-                        
-                sda.SelectCommand = new SqlCommand(sqlstr, con);
+
+                cmd = new SqlCommand(sqlstr, con);
+
+                sda.SelectCommand = cmd;
 
                 sda.Fill(ds);
-                con.Close();
+                //con.Close();
                 return ds.Tables[0];
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 throw ex;
+            }
+            finally {
+                cmd.Cancel();
             }
         }
 
         //修改(新刪修)
         public void ExcuteNonQuery(string command) {
+            SqlCommand cmd = new SqlCommand();
             try
             {
-                SqlCommand cmd = con.CreateCommand();
+                cmd = con.CreateCommand();
                 cmd.Connection.Open();
                 cmd.CommandText = command;
 
@@ -52,6 +65,9 @@ namespace HMI
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally {
+                cmd.Cancel();
             }
             
         }

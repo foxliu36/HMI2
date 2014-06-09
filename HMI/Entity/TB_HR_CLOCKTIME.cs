@@ -20,5 +20,6 @@ namespace HMI.Entity
         public Nullable<System.DateTime> DATE_TIME { get; set; }
         public string TERMINAL_ID { get; set; }
         public string VERIFICATION_SOURCE { get; set; }
+        public Nullable<System.DateTime> ARRIVAL_TIME { get; set; }
     }
 }

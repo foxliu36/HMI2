@@ -24,5 +24,6 @@ namespace HMI.Entity
         public string EDIT_DATE { get; set; }
         public string YEAR { get; set; }
         public string TASK_ID { get; set; }
+        public string SIGNER { get; set; }
     }
 }

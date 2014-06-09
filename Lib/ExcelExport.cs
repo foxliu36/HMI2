@@ -14,12 +14,29 @@ namespace Lib
         //傳入Excel上面的標頭名稱
         private string[] CNames;
 
+        Microsoft.Office.Interop.Excel.Application xlApp;
+        Microsoft.Office.Interop.Excel.Workbooks workbooks;
+        Microsoft.Office.Interop.Excel.Workbook workbook;
+        public Microsoft.Office.Interop.Excel.Worksheet worksheet;
+        
+        public ExcelExport() 
+        {
+            xlApp = new Microsoft.Office.Interop.Excel.Application();
+
+            if (xlApp == null)
+            {
+                MessageBox.Show("無法建立Excel，可能您的電腦未安装Excel");
+                return;
+            }
+            workbooks = xlApp.Workbooks;
+            workbook = workbooks.Add(Microsoft.Office.Interop.Excel.XlWBATemplate.xlWBATWorksheet);
+            worksheet = (Microsoft.Office.Interop.Excel.Worksheet)workbook.Worksheets[1];//取得sheet1
+        }
+
         public void ExportExcel(System.Data.DataTable p_dt)
         {
             try
             {
-                System.Data.DataTable dt1 = p_dt;
-
 
                 //bool fileSaved = false;
                 string saveFileName = "";
@@ -30,39 +47,23 @@ namespace Lib
                 saveFileName = saveDialog.FileName;
                 if (saveFileName.IndexOf(":") < 0)
                     return;
-                Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
-                if (xlApp == null)
-                {
-                    MessageBox.Show("無法建立Excel，可能您的電腦未安装Excel");
-                    return;
-                }
-
-                Microsoft.Office.Interop.Excel.Workbooks workbooks = xlApp.Workbooks;
-                Microsoft.Office.Interop.Excel.Workbook workbook = workbooks.Add(Microsoft.Office.Interop.Excel.XlWBATemplate.xlWBATWorksheet);
-                Microsoft.Office.Interop.Excel.Worksheet worksheet = (Microsoft.Office.Interop.Excel.Worksheet)workbook.Worksheets[1];//取得sheet1
-                worksheet.Name = "123";
-
+               
                 //載入Excel Header Names
                 for (int i = 0; i < CNames.Length; i++)
                 {
                     worksheet.Cells[1, i + 1] = CNames[i];
                 }
 
-
-                Microsoft.Office.Interop.Excel.Range rangeinfo = worksheet.Range["C1", "C" + dt1.Rows.Count + 1];
-                Microsoft.Office.Interop.Excel.Range rangeinfo2 = worksheet.Range["D1", "D" + dt1.Rows.Count + 1];
-                rangeinfo.NumberFormat = "0000";
-                rangeinfo2.NumberFormat = "00";
                 ////塞入數字
-                for (int r = 0; r < dt1.Rows.Count; r++)
+                for (int r = 0; r < p_dt.Rows.Count; r++)
                 {
-                    for (int i = 0; i < dt1.Columns.Count; i++)
+                    for (int i = 0; i < p_dt.Columns.Count; i++)
                     {
                         
                         //變顏色
                         //worksheet.Range["A1", "B4"].Interior.ColorIndex = 39;
-                       
-                        worksheet.Cells[r + 2, i + 1] = dt1.Rows[r][i].ToString();
+
+                        worksheet.Cells[r + 2, i + 1] = p_dt.Rows[r][i].ToString();
 
                     }
                     System.Windows.Forms.Application.DoEvents();
@@ -105,12 +106,25 @@ namespace Lib
             }
         }
 
+        //public void ExportExcel(System.Data.DataTable p_dt, bool p_Multimode) 
+        //{
+        //    try
+        //    {
+
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
+
+
+        //關於困難度 要把多從匯出寫成元件function有困難 擇日再戰
         public void MiltiExportExcel(List<System.Data.DataTable> p_dtL, string p_Sheetname)
         {
             try
             {
                 //System.Data.DataTable dt1 = this.dt;
-
 
                 //bool fileSaved = false;
                 string saveFileName = "";
@@ -121,12 +135,8 @@ namespace Lib
                 saveFileName = saveDialog.FileName;
                 if (saveFileName.IndexOf(":") < 0)
                     return;
-                Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
-                if (xlApp == null)
-                {
-                    MessageBox.Show("無法建立Excel，可能您的電腦未安装Excel");
-                    return;
-                }
+
+                
 
                 saveFileName = saveFileName.Insert(saveFileName.LastIndexOf("."),"__0");
 
@@ -136,20 +146,29 @@ namespace Lib
                     //變更檔案名稱(跳號)
                     saveFileName = saveFileName.Replace("__" + i, "__" + (i + 1));
 
+                    Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
+                    if (xlApp == null)
+                    {
+                        MessageBox.Show("無法建立Excel，可能您的電腦未安装Excel");
+                        return;
+                    }
                     Microsoft.Office.Interop.Excel.Workbooks workbooks = xlApp.Workbooks;
                     Microsoft.Office.Interop.Excel.Workbook workbook = workbooks.Add(Microsoft.Office.Interop.Excel.XlWBATemplate.xlWBATWorksheet);
-                    Microsoft.Office.Interop.Excel.Worksheet worksheet = (Microsoft.Office.Interop.Excel.Worksheet)workbook.Worksheets[1];//取得sheet1
-                    worksheet.Name = p_Sheetname;
+                    Microsoft.Office.Interop.Excel.Worksheet worksheet = (Microsoft.Office.Interop.Excel.Worksheet)workbook.Worksheets[1];
 
                     for (int n = 0; n < CNames.Length; n++)
                     {
                         worksheet.Cells[1, n + 1] = CNames[n];
                     }
+                    worksheet.Name = p_Sheetname;
 
-                    Microsoft.Office.Interop.Excel.Range rangeinfo = worksheet.Range["C1", "C" + p_dtL[i].Rows.Count + 1];
-                    Microsoft.Office.Interop.Excel.Range rangeinfo2 = worksheet.Range["D1", "D" + p_dtL[i].Rows.Count + 1];
-                    rangeinfo.NumberFormat = "0000";
-                    rangeinfo2.NumberFormat = "00";
+                    Microsoft.Office.Interop.Excel.Range range = worksheet.Range["C1", "C" + p_dtL[i].Rows.Count + 1];
+                    Microsoft.Office.Interop.Excel.Range range1 = worksheet.Range["D1", "D" + p_dtL[i].Rows.Count + 1];
+
+                    range.NumberFormat = "0000";
+                    range1.NumberFormat = "00";
+
+
                     ////塞入數字
                     for (int r = 0; r < p_dtL[i].Rows.Count; r++)
                     {
@@ -196,7 +215,6 @@ namespace Lib
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
@@ -205,7 +223,12 @@ namespace Lib
         {
             this.CNames = p_Name;
         }
-        
+
+        public void SetNumberFormat(string p_RangeStart, string p_RangeEnd, string p_FormatStr)
+        {
+            Microsoft.Office.Interop.Excel.Range range = worksheet.Range[p_RangeStart, p_RangeEnd];
+            range.NumberFormat = p_FormatStr;
+        }
     }
     
 }
