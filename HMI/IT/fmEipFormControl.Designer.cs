@@ -240,7 +240,7 @@
             this.Controls.Add(this.cbModule);
             this.Controls.Add(this.dataGridView1);
             this.Name = "fmEipFormControl";
-            this.Text = "fmEipFormControl";
+            this.Text = "畫面掛載";
             this.Load += new System.EventHandler(this.fmEipFormControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

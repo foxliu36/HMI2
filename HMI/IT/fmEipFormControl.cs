@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Lib.OfficialFactory;
+using Lib.SimpleFactory;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +14,7 @@ namespace HMI.IT
 {
     public partial class fmEipFormControl : Form
     {
-        Dao dao = new Dao();
+        ADaoFactory dao = new DaoFactory(EDaoType.SQLServer);
 
         public fmEipFormControl()
         {
