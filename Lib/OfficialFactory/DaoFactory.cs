@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Lib.Factory;
-using Lib.SimpleFactory;
 
 namespace Lib.OfficialFactory
 {

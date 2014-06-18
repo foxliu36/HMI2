@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lib.Factory
+namespace Lib.OfficialFactory
 {
     public interface InterfaceDao
     {

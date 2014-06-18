@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Lib.Factory;
 using System.Data.SQLite;
 using System.Data;
 
-namespace Lib.SimpleFactory
+namespace Lib.OfficialFactory
 {
     //http://roach0426.pixnet.net/blog/post/965051-%E7%94%A8c%23%E4%BE%86%E8%AE%80%E6%94%9C%E5%B8%B6%E5%9E%8B%E8%B3%87%E6%96%99%E5%BA%ABsqlite
     //http://www.iteye.com/topic/114055

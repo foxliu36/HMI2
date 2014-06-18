@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lib.SimpleFactory
+namespace Lib.OfficialFactory
 {
     public enum EDaoType
     {

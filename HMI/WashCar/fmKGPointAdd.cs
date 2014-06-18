@@ -8,19 +8,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using HMI.Entity;
+using Lib.OfficialFactory;
 
 namespace HMI.WashCar
 {
     public partial class fmKGPointAdd : Form
     {
 
-        Dao dao = new Dao("Data Source = KDSQL;Initial Catalog=KG;User ID=96002;Password=s0953039382;");
+        ADaoFactory dao = new DaoFactory(EDaoType.SQLServer);
 
         public fmKGPointAdd()
         {
             InitializeComponent();
             ShowData();
-
+            dao.SetConnectionString("Data Source = KDSQL;Initial Catalog=KG;User ID=96002;Password=s0953039382;");
         }
 
         public void ShowData() 

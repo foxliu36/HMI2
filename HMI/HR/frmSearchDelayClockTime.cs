@@ -1,6 +1,7 @@
 ﻿using HMI.Common;
 using HMI.Entity;
 using HMI.Model;
+using Lib.OfficialFactory;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,8 +17,9 @@ namespace HMI.HR
 {
     public partial class frmSearchDelayClockTime : Form
     {
-        Dao daodoor = new Dao(@"Data Source = SOFTFW_SYSLOG\SQLEXPRESS;Initial Catalog=chiyu;User ID=sa;Password=hp1020.;");
-        Dao dao = new Dao();
+        ADaoFactory daodoor = new DaoFactory(EDaoType.SQLServer);
+        
+        ADaoFactory dao = new DaoFactory(EDaoType.SQLServer);
 
         DataTable dtforExl = new DataTable();
 
@@ -25,6 +27,7 @@ namespace HMI.HR
         public frmSearchDelayClockTime()
         {
             InitializeComponent();
+            daodoor.SetConnectionString(@"Data Source = SOFTFW_SYSLOG\SQLEXPRESS;Initial Catalog=chiyu;User ID=sa;Password=hp1020.;");
         }
 
         private void btnFindMissing_Click(object sender, EventArgs e)

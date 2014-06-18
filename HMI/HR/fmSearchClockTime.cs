@@ -11,9 +11,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Aspose.Cells;
 using HMI.Entity;
-using Lib.OfficialFactory;
-using Lib.SimpleFactory;
 using HMI.Model;
+using Lib.OfficialFactory;
 
 /*** Design by fox ***/
 namespace HMI
@@ -23,7 +22,7 @@ namespace HMI
 
         List<ExportData> ShowList = new List<ExportData>();
         DataTable dtforExl = new DataTable();
-        Dao dao = new Dao();
+        ADaoFactory dao = new DaoFactory(EDaoType.SQLServer);
         
         //匯出excel權限
         int process = 0;

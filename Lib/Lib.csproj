@@ -51,13 +51,11 @@
     <Compile Include="Class1.cs" />
     <Compile Include="OfficialFactory\ADaoFactory.cs" />
     <Compile Include="OfficialFactory\DaoFactory.cs" />
-    <Compile Include="SimpleFactory\DaoFactory.cs" />
-    <Compile Include="Dao.cs" />
     <Compile Include="ExcelExport.cs" />
-    <Compile Include="SimpleFactory\EDaoType.cs" />
-    <Compile Include="SimpleFactory\InterfaceDao.cs" />
-    <Compile Include="SimpleFactory\SQLiteDao.cs" />
-    <Compile Include="SimpleFactory\SqlServerDao.cs" />
+    <Compile Include="OfficialFactory\EDaoType.cs" />
+    <Compile Include="OfficialFactory\InterfaceDao.cs" />
+    <Compile Include="OfficialFactory\SQLiteDao.cs" />
+    <Compile Include="OfficialFactory\SqlServerDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XmlProfile.cs" />
   </ItemGroup>
@@ -75,7 +73,6 @@
   <ItemGroup>
     <Content Include="OfficialFactory\FactoryPattern.png" />
     <Content Include="resLib\System.Data.SQLite.DLL" />
-    <Content Include="SimpleFactory\SimpleFactory.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
