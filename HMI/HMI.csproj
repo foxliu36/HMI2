@@ -77,6 +77,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseDialog.Designer.cs">
+      <DependentUpon>BaseDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\Tool.cs" />
     <Compile Include="Dialog\fmEasyFindEmp.cs">
       <SubType>Form</SubType>
@@ -1215,11 +1221,11 @@
     <Compile Include="Entity\TB_WKF_TRANSFER_RECORD.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="HR\fmCheckOldClockTime.cs">
+    <Compile Include="fmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HR\fmCheckOldClockTime.Designer.cs">
-      <DependentUpon>fmCheckOldClockTime.cs</DependentUpon>
+    <Compile Include="fmLogin.Designer.cs">
+      <DependentUpon>fmLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="HR\fmSearchClockTime.cs">
       <SubType>Form</SubType>
@@ -1232,11 +1238,6 @@
     </Compile>
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="HRDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>HRDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="HR\frmSearchDelayClockTime.cs">
       <SubType>Form</SubType>
@@ -1278,11 +1279,11 @@
     <Compile Include="WashCar\fmKGPointAdd.Designer.cs">
       <DependentUpon>fmKGPointAdd.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="BaseDialog.resx">
+      <DependentUpon>BaseDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialog\fmEasyFindEmp.resx">
       <DependentUpon>fmEasyFindEmp.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HR\fmCheckOldClockTime.resx">
-      <DependentUpon>fmCheckOldClockTime.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HR\fmSearchClockTime.resx">
       <DependentUpon>fmSearchClockTime.cs</DependentUpon>
@@ -1335,17 +1336,6 @@
       <LastGenOutput>Model1.cs</LastGenOutput>
     </None>
     <None Include="Excel_File\HTReport.xls" />
-    <None Include="HRDataSet.xsc">
-      <DependentUpon>HRDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="HRDataSet.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>HRDataSet.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="HRDataSet.xss">
-      <DependentUpon>HRDataSet.xsd</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -1431,6 +1421,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Entity\DoorLog\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

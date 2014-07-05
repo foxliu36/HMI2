@@ -80,6 +80,7 @@
             this.brabrabraToolStripMenuItem.Name = "brabrabraToolStripMenuItem";
             this.brabrabraToolStripMenuItem.Size = new System.Drawing.Size(190, 24);
             this.brabrabraToolStripMenuItem.Text = "brabrabra";
+            this.brabrabraToolStripMenuItem.Visible = false;
             this.brabrabraToolStripMenuItem.Click += new System.EventHandler(this.brabrabraToolStripMenuItem_Click);
             // 
             // 卡鐘舊資料ToolStripMenuItem
@@ -118,6 +119,7 @@
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(174, 24);
             this.toolStripMenuItem2.Text = "testSQLite";
+            this.toolStripMenuItem2.Visible = false;
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // 角色成員管理ToolStripMenuItem

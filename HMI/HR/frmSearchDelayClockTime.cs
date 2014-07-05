@@ -105,9 +105,12 @@ namespace HMI.HR
         {
             StringBuilder sb = new StringBuilder();
 
-            //這個月第一天
-            DateTime firstdate = DateTime.Now.AddDays(-DateTime.Now.Day + 1).AddHours(-DateTime.Now.Hour);
+            DateTime l_Dt = dateTimePicker1.Value;
 
+            //這個月第一天
+            DateTime firstdate = l_Dt.AddDays(-l_Dt.Day + 1).AddHours(-l_Dt.Hour);
+
+            //找尋時間差超過1天 並且時間點大於 firstdate
             sb.Append(" SELECT * ");
             sb.Append(" FROM [DoorLog] AS [t0] ");
             sb.Append(" WHERE ((CONVERT(BigInt,(((CONVERT(BigInt,DATEDIFF(DAY, [t0].[DateTime], [t0].[LogArrivalDateTime]))) * 86400000) + DATEDIFF(MILLISECOND, DATEADD(DAY, DATEDIFF(DAY, [t0].[DateTime], [t0].[LogArrivalDateTime]), [t0].[DateTime]), [t0].[LogArrivalDateTime])) * 10000)) >864000000000) AND ([t0].[DateTime] > '" + firstdate.ToString("yyyy-MM-dd HH:mm:ss") + "') ");

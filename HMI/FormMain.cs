@@ -58,9 +58,7 @@ namespace HMI
         {
             if (CheckWindowOpened("fmCheckOldClockTime"))
             {
-                fmCheckOldClockTime fCheckOldClockTime = new fmCheckOldClockTime();
-                fCheckOldClockTime.MdiParent = this;
-                fCheckOldClockTime.Show();
+                
             }
         }
 
