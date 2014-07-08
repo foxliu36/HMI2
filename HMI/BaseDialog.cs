@@ -37,10 +37,10 @@ namespace HMI
             this.Close();
         }
 
-        private void BaseDialog_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            e.Cancel = (!FCanClose);
-        }
+        //private void BaseDialog_FormClosing(object sender, FormClosingEventArgs e)
+        //{
+        //    e.Cancel = (!FCanClose);
+        //}
 
     }
 }
