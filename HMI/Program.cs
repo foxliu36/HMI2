@@ -14,11 +14,23 @@ namespace HMI
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new FormMain());
+
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormMain());
+            Application.EnableVisualStyles();
+            DialogResult result;
 
             
+            using (var loginForm = new fmLogin())
+                result = loginForm.ShowDialog();
+            
+            if (result == DialogResult.OK)
+            {
+                // login was successful
+                Application.Run(new FormMain());
+            }
         }
     }
 }

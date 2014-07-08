@@ -66,6 +66,7 @@
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -1267,6 +1268,11 @@
     <Compile Include="Model\PernalData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\GASServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="UC\UCButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1284,6 +1290,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\fmEasyFindEmp.resx">
       <DependentUpon>fmEasyFindEmp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fmLogin.resx">
+      <DependentUpon>fmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HR\fmSearchClockTime.resx">
       <DependentUpon>fmSearchClockTime.cs</DependentUpon>
@@ -1346,6 +1355,19 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Service References\GASServiceReference\GasService.wsdl" />
+    <None Include="Service References\GASServiceReference\HMI.GASServiceReference.AuthByPasswordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\GASServiceReference\HMI.GASServiceReference.ChangePasswordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\GASServiceReference\HMI.GASServiceReference.CMessage.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\GASServiceReference\HMI.GASServiceReference.HelloWorldResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="SQLite\bin\CompactFramework\SQLite.Interop.066.exp" />
     <None Include="SQLite\bin\CompactFramework\SQLite.Interop.066.lib" />
     <None Include="SQLite\bin\Designer\install.exe.config" />
@@ -1397,6 +1419,13 @@
     <Content Include="Addone_dll\Aspose.Cells.dll" />
     <Content Include="Addone_dll\log4net.dll" />
     <Content Include="IT\sql圖片1.png" />
+    <None Include="Service References\GASServiceReference\GasService.disco" />
+    <None Include="Service References\GASServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\GASServiceReference\configuration.svcinfo" />
+    <None Include="Service References\GASServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="SQLite\bin\CompactFramework\SQLite.Interop.066.DLL" />
     <Content Include="SQLite\bin\CompactFramework\System.Data.SQLite.dll" />
     <Content Include="SQLite\bin\CompactFramework\testce.exe" />
@@ -1424,6 +1453,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\GASServiceReference\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -19,9 +19,9 @@ namespace HMI.WashCar
 
         public fmKGPointAdd()
         {
+            dao.SetConnectionString("Data Source = KDSQL;Initial Catalog=KG;User ID=96002;Password=s0953039382;");
             InitializeComponent();
             ShowData();
-            dao.SetConnectionString("Data Source = KDSQL;Initial Catalog=KG;User ID=96002;Password=s0953039382;");
         }
 
         public void ShowData() 
