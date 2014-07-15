@@ -40,6 +40,7 @@
             this.角色成員管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.說明ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.加入業代店數ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.資產管理系統ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,7 +50,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.人資ToolStripMenuItem,
             this.資訊室ToolStripMenuItem,
-            this.說明ToolStripMenuItem});
+            this.說明ToolStripMenuItem,
+            this.資產管理系統ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.MdiWindowListItem = this.人資ToolStripMenuItem;
             this.menuStrip1.Name = "menuStrip1";
@@ -144,6 +146,12 @@
             this.加入業代店數ToolStripMenuItem.Text = "加入業代店數";
             this.加入業代店數ToolStripMenuItem.Click += new System.EventHandler(this.加入業代店數ToolStripMenuItem_Click);
             // 
+            // 資產管理系統ToolStripMenuItem
+            // 
+            this.資產管理系統ToolStripMenuItem.Name = "資產管理系統ToolStripMenuItem";
+            this.資產管理系統ToolStripMenuItem.Size = new System.Drawing.Size(117, 24);
+            this.資產管理系統ToolStripMenuItem.Text = "資產管理系統";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -176,5 +184,6 @@
         private System.Windows.Forms.ToolStripMenuItem 角色成員管理ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 加入業代店數ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 延遲的卡鐘資料ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 資產管理系統ToolStripMenuItem;
     }
 }
