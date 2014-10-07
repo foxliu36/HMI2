@@ -12,12 +12,35 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="AuthByPasswordNoSys">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="p_Acc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="p_PassWd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="p_IP" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthByPasswordNoSysResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AuthByPasswordNoSysResult" type="tns:CMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CMessage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="l_Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="l_Return" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="AuthByPassword">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="p_Acc" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="p_PassWd" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="p_System" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="p_IP" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -28,20 +51,60 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="CMessage">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="1" name="l_Message" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="l_Return" type="s:boolean" />
-        </s:sequence>
-      </s:complexType>
       <s:element name="ChangePassword">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="p_Acc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="p_SID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="p_Email" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangePasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChangePasswordResult" type="tns:CMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckIsDefaultPassWd">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="p_Acc" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="ChangePasswordResponse">
+      <s:element name="CheckIsDefaultPassWdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckIsDefaultPassWdResult" type="tns:CMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RenewPassWd">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="p_Acc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="p_NewPassWd" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RenewPassWdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RenewPassWdResult" type="tns:CMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddEmail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="p_Acc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="p_Email" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddEmailResponse">
         <s:complexType />
       </s:element>
     </s:schema>
@@ -51,6 +114,12 @@
   </wsdl:message>
   <wsdl:message name="HelloWorldSoapOut">
     <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="AuthByPasswordNoSysSoapIn">
+    <wsdl:part name="parameters" element="tns:AuthByPasswordNoSys" />
+  </wsdl:message>
+  <wsdl:message name="AuthByPasswordNoSysSoapOut">
+    <wsdl:part name="parameters" element="tns:AuthByPasswordNoSysResponse" />
   </wsdl:message>
   <wsdl:message name="AuthByPasswordSoapIn">
     <wsdl:part name="parameters" element="tns:AuthByPassword" />
@@ -64,10 +133,32 @@
   <wsdl:message name="ChangePasswordSoapOut">
     <wsdl:part name="parameters" element="tns:ChangePasswordResponse" />
   </wsdl:message>
+  <wsdl:message name="CheckIsDefaultPassWdSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckIsDefaultPassWd" />
+  </wsdl:message>
+  <wsdl:message name="CheckIsDefaultPassWdSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckIsDefaultPassWdResponse" />
+  </wsdl:message>
+  <wsdl:message name="RenewPassWdSoapIn">
+    <wsdl:part name="parameters" element="tns:RenewPassWd" />
+  </wsdl:message>
+  <wsdl:message name="RenewPassWdSoapOut">
+    <wsdl:part name="parameters" element="tns:RenewPassWdResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddEmailSoapIn">
+    <wsdl:part name="parameters" element="tns:AddEmail" />
+  </wsdl:message>
+  <wsdl:message name="AddEmailSoapOut">
+    <wsdl:part name="parameters" element="tns:AddEmailResponse" />
+  </wsdl:message>
   <wsdl:portType name="GasServiceSoap">
     <wsdl:operation name="HelloWorld">
       <wsdl:input message="tns:HelloWorldSoapIn" />
       <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthByPasswordNoSys">
+      <wsdl:input message="tns:AuthByPasswordNoSysSoapIn" />
+      <wsdl:output message="tns:AuthByPasswordNoSysSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="AuthByPassword">
       <wsdl:input message="tns:AuthByPasswordSoapIn" />
@@ -77,11 +168,32 @@
       <wsdl:input message="tns:ChangePasswordSoapIn" />
       <wsdl:output message="tns:ChangePasswordSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="CheckIsDefaultPassWd">
+      <wsdl:input message="tns:CheckIsDefaultPassWdSoapIn" />
+      <wsdl:output message="tns:CheckIsDefaultPassWdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RenewPassWd">
+      <wsdl:input message="tns:RenewPassWdSoapIn" />
+      <wsdl:output message="tns:RenewPassWdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddEmail">
+      <wsdl:input message="tns:AddEmailSoapIn" />
+      <wsdl:output message="tns:AddEmailSoapOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="GasServiceSoap" type="tns:GasServiceSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="HelloWorld">
       <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthByPasswordNoSys">
+      <soap:operation soapAction="http://tempuri.org/AuthByPasswordNoSys" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -107,11 +219,47 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="CheckIsDefaultPassWd">
+      <soap:operation soapAction="http://tempuri.org/CheckIsDefaultPassWd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RenewPassWd">
+      <soap:operation soapAction="http://tempuri.org/RenewPassWd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddEmail">
+      <soap:operation soapAction="http://tempuri.org/AddEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="GasServiceSoap12" type="tns:GasServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="HelloWorld">
       <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthByPasswordNoSys">
+      <soap12:operation soapAction="http://tempuri.org/AuthByPasswordNoSys" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -130,6 +278,33 @@
     </wsdl:operation>
     <wsdl:operation name="ChangePassword">
       <soap12:operation soapAction="http://tempuri.org/ChangePassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckIsDefaultPassWd">
+      <soap12:operation soapAction="http://tempuri.org/CheckIsDefaultPassWd" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RenewPassWd">
+      <soap12:operation soapAction="http://tempuri.org/RenewPassWd" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddEmail">
+      <soap12:operation soapAction="http://tempuri.org/AddEmail" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

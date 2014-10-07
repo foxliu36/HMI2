@@ -85,6 +85,13 @@ namespace HMI.GASServiceReference {
         System.Threading.Tasks.Task<HMI.GASServiceReference.HelloWorldResponse> HelloWorldAsync(HMI.GASServiceReference.HelloWorldRequest request);
         
         // CODEGEN: 命名空間 http://tempuri.org/ 的項目名稱  p_Acc 未標示為 nillable，正在產生訊息合約
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/AuthByPasswordNoSys", ReplyAction="*")]
+        HMI.GASServiceReference.AuthByPasswordNoSysResponse AuthByPasswordNoSys(HMI.GASServiceReference.AuthByPasswordNoSysRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/AuthByPasswordNoSys", ReplyAction="*")]
+        System.Threading.Tasks.Task<HMI.GASServiceReference.AuthByPasswordNoSysResponse> AuthByPasswordNoSysAsync(HMI.GASServiceReference.AuthByPasswordNoSysRequest request);
+        
+        // CODEGEN: 命名空間 http://tempuri.org/ 的項目名稱  p_Acc 未標示為 nillable，正在產生訊息合約
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/AuthByPassword", ReplyAction="*")]
         HMI.GASServiceReference.AuthByPasswordResponse AuthByPassword(HMI.GASServiceReference.AuthByPasswordRequest request);
         
@@ -97,6 +104,27 @@ namespace HMI.GASServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ChangePassword", ReplyAction="*")]
         System.Threading.Tasks.Task<HMI.GASServiceReference.ChangePasswordResponse> ChangePasswordAsync(HMI.GASServiceReference.ChangePasswordRequest request);
+        
+        // CODEGEN: 命名空間 http://tempuri.org/ 的項目名稱  p_Acc 未標示為 nillable，正在產生訊息合約
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CheckIsDefaultPassWd", ReplyAction="*")]
+        HMI.GASServiceReference.CheckIsDefaultPassWdResponse CheckIsDefaultPassWd(HMI.GASServiceReference.CheckIsDefaultPassWdRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/CheckIsDefaultPassWd", ReplyAction="*")]
+        System.Threading.Tasks.Task<HMI.GASServiceReference.CheckIsDefaultPassWdResponse> CheckIsDefaultPassWdAsync(HMI.GASServiceReference.CheckIsDefaultPassWdRequest request);
+        
+        // CODEGEN: 命名空間 http://tempuri.org/ 的項目名稱  p_Acc 未標示為 nillable，正在產生訊息合約
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/RenewPassWd", ReplyAction="*")]
+        HMI.GASServiceReference.RenewPassWdResponse RenewPassWd(HMI.GASServiceReference.RenewPassWdRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/RenewPassWd", ReplyAction="*")]
+        System.Threading.Tasks.Task<HMI.GASServiceReference.RenewPassWdResponse> RenewPassWdAsync(HMI.GASServiceReference.RenewPassWdRequest request);
+        
+        // CODEGEN: 命名空間 http://tempuri.org/ 的項目名稱  p_Acc 未標示為 nillable，正在產生訊息合約
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/AddEmail", ReplyAction="*")]
+        HMI.GASServiceReference.AddEmailResponse AddEmail(HMI.GASServiceReference.AddEmailRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/AddEmail", ReplyAction="*")]
+        System.Threading.Tasks.Task<HMI.GASServiceReference.AddEmailResponse> AddEmailAsync(HMI.GASServiceReference.AddEmailRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -164,6 +192,82 @@ namespace HMI.GASServiceReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class AuthByPasswordNoSysRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="AuthByPasswordNoSys", Namespace="http://tempuri.org/", Order=0)]
+        public HMI.GASServiceReference.AuthByPasswordNoSysRequestBody Body;
+        
+        public AuthByPasswordNoSysRequest() {
+        }
+        
+        public AuthByPasswordNoSysRequest(HMI.GASServiceReference.AuthByPasswordNoSysRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class AuthByPasswordNoSysRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string p_Acc;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string p_PassWd;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
+        public string p_IP;
+        
+        public AuthByPasswordNoSysRequestBody() {
+        }
+        
+        public AuthByPasswordNoSysRequestBody(string p_Acc, string p_PassWd, string p_IP) {
+            this.p_Acc = p_Acc;
+            this.p_PassWd = p_PassWd;
+            this.p_IP = p_IP;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class AuthByPasswordNoSysResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="AuthByPasswordNoSysResponse", Namespace="http://tempuri.org/", Order=0)]
+        public HMI.GASServiceReference.AuthByPasswordNoSysResponseBody Body;
+        
+        public AuthByPasswordNoSysResponse() {
+        }
+        
+        public AuthByPasswordNoSysResponse(HMI.GASServiceReference.AuthByPasswordNoSysResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class AuthByPasswordNoSysResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public HMI.GASServiceReference.CMessage AuthByPasswordNoSysResult;
+        
+        public AuthByPasswordNoSysResponseBody() {
+        }
+        
+        public AuthByPasswordNoSysResponseBody(HMI.GASServiceReference.CMessage AuthByPasswordNoSysResult) {
+            this.AuthByPasswordNoSysResult = AuthByPasswordNoSysResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class AuthByPasswordRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Name="AuthByPassword", Namespace="http://tempuri.org/", Order=0)]
@@ -192,13 +296,17 @@ namespace HMI.GASServiceReference {
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
         public string p_System;
         
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=3)]
+        public string p_IP;
+        
         public AuthByPasswordRequestBody() {
         }
         
-        public AuthByPasswordRequestBody(string p_Acc, string p_PassWd, string p_System) {
+        public AuthByPasswordRequestBody(string p_Acc, string p_PassWd, string p_System, string p_IP) {
             this.p_Acc = p_Acc;
             this.p_PassWd = p_PassWd;
             this.p_System = p_System;
+            this.p_IP = p_IP;
         }
     }
     
@@ -262,11 +370,19 @@ namespace HMI.GASServiceReference {
         [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
         public string p_Acc;
         
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string p_SID;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=2)]
+        public string p_Email;
+        
         public ChangePasswordRequestBody() {
         }
         
-        public ChangePasswordRequestBody(string p_Acc) {
+        public ChangePasswordRequestBody(string p_Acc, string p_SID, string p_Email) {
             this.p_Acc = p_Acc;
+            this.p_SID = p_SID;
+            this.p_Email = p_Email;
         }
     }
     
@@ -290,10 +406,222 @@ namespace HMI.GASServiceReference {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.Runtime.Serialization.DataContractAttribute()]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
     public partial class ChangePasswordResponseBody {
         
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public HMI.GASServiceReference.CMessage ChangePasswordResult;
+        
         public ChangePasswordResponseBody() {
+        }
+        
+        public ChangePasswordResponseBody(HMI.GASServiceReference.CMessage ChangePasswordResult) {
+            this.ChangePasswordResult = ChangePasswordResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class CheckIsDefaultPassWdRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="CheckIsDefaultPassWd", Namespace="http://tempuri.org/", Order=0)]
+        public HMI.GASServiceReference.CheckIsDefaultPassWdRequestBody Body;
+        
+        public CheckIsDefaultPassWdRequest() {
+        }
+        
+        public CheckIsDefaultPassWdRequest(HMI.GASServiceReference.CheckIsDefaultPassWdRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class CheckIsDefaultPassWdRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string p_Acc;
+        
+        public CheckIsDefaultPassWdRequestBody() {
+        }
+        
+        public CheckIsDefaultPassWdRequestBody(string p_Acc) {
+            this.p_Acc = p_Acc;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class CheckIsDefaultPassWdResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="CheckIsDefaultPassWdResponse", Namespace="http://tempuri.org/", Order=0)]
+        public HMI.GASServiceReference.CheckIsDefaultPassWdResponseBody Body;
+        
+        public CheckIsDefaultPassWdResponse() {
+        }
+        
+        public CheckIsDefaultPassWdResponse(HMI.GASServiceReference.CheckIsDefaultPassWdResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class CheckIsDefaultPassWdResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public HMI.GASServiceReference.CMessage CheckIsDefaultPassWdResult;
+        
+        public CheckIsDefaultPassWdResponseBody() {
+        }
+        
+        public CheckIsDefaultPassWdResponseBody(HMI.GASServiceReference.CMessage CheckIsDefaultPassWdResult) {
+            this.CheckIsDefaultPassWdResult = CheckIsDefaultPassWdResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class RenewPassWdRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="RenewPassWd", Namespace="http://tempuri.org/", Order=0)]
+        public HMI.GASServiceReference.RenewPassWdRequestBody Body;
+        
+        public RenewPassWdRequest() {
+        }
+        
+        public RenewPassWdRequest(HMI.GASServiceReference.RenewPassWdRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class RenewPassWdRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string p_Acc;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string p_NewPassWd;
+        
+        public RenewPassWdRequestBody() {
+        }
+        
+        public RenewPassWdRequestBody(string p_Acc, string p_NewPassWd) {
+            this.p_Acc = p_Acc;
+            this.p_NewPassWd = p_NewPassWd;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class RenewPassWdResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="RenewPassWdResponse", Namespace="http://tempuri.org/", Order=0)]
+        public HMI.GASServiceReference.RenewPassWdResponseBody Body;
+        
+        public RenewPassWdResponse() {
+        }
+        
+        public RenewPassWdResponse(HMI.GASServiceReference.RenewPassWdResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class RenewPassWdResponseBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public HMI.GASServiceReference.CMessage RenewPassWdResult;
+        
+        public RenewPassWdResponseBody() {
+        }
+        
+        public RenewPassWdResponseBody(HMI.GASServiceReference.CMessage RenewPassWdResult) {
+            this.RenewPassWdResult = RenewPassWdResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class AddEmailRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="AddEmail", Namespace="http://tempuri.org/", Order=0)]
+        public HMI.GASServiceReference.AddEmailRequestBody Body;
+        
+        public AddEmailRequest() {
+        }
+        
+        public AddEmailRequest(HMI.GASServiceReference.AddEmailRequestBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute(Namespace="http://tempuri.org/")]
+    public partial class AddEmailRequestBody {
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=0)]
+        public string p_Acc;
+        
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=1)]
+        public string p_Email;
+        
+        public AddEmailRequestBody() {
+        }
+        
+        public AddEmailRequestBody(string p_Acc, string p_Email) {
+            this.p_Acc = p_Acc;
+            this.p_Email = p_Email;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class AddEmailResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Name="AddEmailResponse", Namespace="http://tempuri.org/", Order=0)]
+        public HMI.GASServiceReference.AddEmailResponseBody Body;
+        
+        public AddEmailResponse() {
+        }
+        
+        public AddEmailResponse(HMI.GASServiceReference.AddEmailResponseBody Body) {
+            this.Body = Body;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.Runtime.Serialization.DataContractAttribute()]
+    public partial class AddEmailResponseBody {
+        
+        public AddEmailResponseBody() {
         }
     }
     
@@ -348,16 +676,46 @@ namespace HMI.GASServiceReference {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        HMI.GASServiceReference.AuthByPasswordNoSysResponse HMI.GASServiceReference.GasServiceSoap.AuthByPasswordNoSys(HMI.GASServiceReference.AuthByPasswordNoSysRequest request) {
+            return base.Channel.AuthByPasswordNoSys(request);
+        }
+        
+        public HMI.GASServiceReference.CMessage AuthByPasswordNoSys(string p_Acc, string p_PassWd, string p_IP) {
+            HMI.GASServiceReference.AuthByPasswordNoSysRequest inValue = new HMI.GASServiceReference.AuthByPasswordNoSysRequest();
+            inValue.Body = new HMI.GASServiceReference.AuthByPasswordNoSysRequestBody();
+            inValue.Body.p_Acc = p_Acc;
+            inValue.Body.p_PassWd = p_PassWd;
+            inValue.Body.p_IP = p_IP;
+            HMI.GASServiceReference.AuthByPasswordNoSysResponse retVal = ((HMI.GASServiceReference.GasServiceSoap)(this)).AuthByPasswordNoSys(inValue);
+            return retVal.Body.AuthByPasswordNoSysResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<HMI.GASServiceReference.AuthByPasswordNoSysResponse> HMI.GASServiceReference.GasServiceSoap.AuthByPasswordNoSysAsync(HMI.GASServiceReference.AuthByPasswordNoSysRequest request) {
+            return base.Channel.AuthByPasswordNoSysAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<HMI.GASServiceReference.AuthByPasswordNoSysResponse> AuthByPasswordNoSysAsync(string p_Acc, string p_PassWd, string p_IP) {
+            HMI.GASServiceReference.AuthByPasswordNoSysRequest inValue = new HMI.GASServiceReference.AuthByPasswordNoSysRequest();
+            inValue.Body = new HMI.GASServiceReference.AuthByPasswordNoSysRequestBody();
+            inValue.Body.p_Acc = p_Acc;
+            inValue.Body.p_PassWd = p_PassWd;
+            inValue.Body.p_IP = p_IP;
+            return ((HMI.GASServiceReference.GasServiceSoap)(this)).AuthByPasswordNoSysAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         HMI.GASServiceReference.AuthByPasswordResponse HMI.GASServiceReference.GasServiceSoap.AuthByPassword(HMI.GASServiceReference.AuthByPasswordRequest request) {
             return base.Channel.AuthByPassword(request);
         }
         
-        public HMI.GASServiceReference.CMessage AuthByPassword(string p_Acc, string p_PassWd, string p_System) {
+        public HMI.GASServiceReference.CMessage AuthByPassword(string p_Acc, string p_PassWd, string p_System, string p_IP) {
             HMI.GASServiceReference.AuthByPasswordRequest inValue = new HMI.GASServiceReference.AuthByPasswordRequest();
             inValue.Body = new HMI.GASServiceReference.AuthByPasswordRequestBody();
             inValue.Body.p_Acc = p_Acc;
             inValue.Body.p_PassWd = p_PassWd;
             inValue.Body.p_System = p_System;
+            inValue.Body.p_IP = p_IP;
             HMI.GASServiceReference.AuthByPasswordResponse retVal = ((HMI.GASServiceReference.GasServiceSoap)(this)).AuthByPassword(inValue);
             return retVal.Body.AuthByPasswordResult;
         }
@@ -367,12 +725,13 @@ namespace HMI.GASServiceReference {
             return base.Channel.AuthByPasswordAsync(request);
         }
         
-        public System.Threading.Tasks.Task<HMI.GASServiceReference.AuthByPasswordResponse> AuthByPasswordAsync(string p_Acc, string p_PassWd, string p_System) {
+        public System.Threading.Tasks.Task<HMI.GASServiceReference.AuthByPasswordResponse> AuthByPasswordAsync(string p_Acc, string p_PassWd, string p_System, string p_IP) {
             HMI.GASServiceReference.AuthByPasswordRequest inValue = new HMI.GASServiceReference.AuthByPasswordRequest();
             inValue.Body = new HMI.GASServiceReference.AuthByPasswordRequestBody();
             inValue.Body.p_Acc = p_Acc;
             inValue.Body.p_PassWd = p_PassWd;
             inValue.Body.p_System = p_System;
+            inValue.Body.p_IP = p_IP;
             return ((HMI.GASServiceReference.GasServiceSoap)(this)).AuthByPasswordAsync(inValue);
         }
         
@@ -381,11 +740,14 @@ namespace HMI.GASServiceReference {
             return base.Channel.ChangePassword(request);
         }
         
-        public void ChangePassword(string p_Acc) {
+        public HMI.GASServiceReference.CMessage ChangePassword(string p_Acc, string p_SID, string p_Email) {
             HMI.GASServiceReference.ChangePasswordRequest inValue = new HMI.GASServiceReference.ChangePasswordRequest();
             inValue.Body = new HMI.GASServiceReference.ChangePasswordRequestBody();
             inValue.Body.p_Acc = p_Acc;
+            inValue.Body.p_SID = p_SID;
+            inValue.Body.p_Email = p_Email;
             HMI.GASServiceReference.ChangePasswordResponse retVal = ((HMI.GASServiceReference.GasServiceSoap)(this)).ChangePassword(inValue);
+            return retVal.Body.ChangePasswordResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -393,11 +755,91 @@ namespace HMI.GASServiceReference {
             return base.Channel.ChangePasswordAsync(request);
         }
         
-        public System.Threading.Tasks.Task<HMI.GASServiceReference.ChangePasswordResponse> ChangePasswordAsync(string p_Acc) {
+        public System.Threading.Tasks.Task<HMI.GASServiceReference.ChangePasswordResponse> ChangePasswordAsync(string p_Acc, string p_SID, string p_Email) {
             HMI.GASServiceReference.ChangePasswordRequest inValue = new HMI.GASServiceReference.ChangePasswordRequest();
             inValue.Body = new HMI.GASServiceReference.ChangePasswordRequestBody();
             inValue.Body.p_Acc = p_Acc;
+            inValue.Body.p_SID = p_SID;
+            inValue.Body.p_Email = p_Email;
             return ((HMI.GASServiceReference.GasServiceSoap)(this)).ChangePasswordAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        HMI.GASServiceReference.CheckIsDefaultPassWdResponse HMI.GASServiceReference.GasServiceSoap.CheckIsDefaultPassWd(HMI.GASServiceReference.CheckIsDefaultPassWdRequest request) {
+            return base.Channel.CheckIsDefaultPassWd(request);
+        }
+        
+        public HMI.GASServiceReference.CMessage CheckIsDefaultPassWd(string p_Acc) {
+            HMI.GASServiceReference.CheckIsDefaultPassWdRequest inValue = new HMI.GASServiceReference.CheckIsDefaultPassWdRequest();
+            inValue.Body = new HMI.GASServiceReference.CheckIsDefaultPassWdRequestBody();
+            inValue.Body.p_Acc = p_Acc;
+            HMI.GASServiceReference.CheckIsDefaultPassWdResponse retVal = ((HMI.GASServiceReference.GasServiceSoap)(this)).CheckIsDefaultPassWd(inValue);
+            return retVal.Body.CheckIsDefaultPassWdResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<HMI.GASServiceReference.CheckIsDefaultPassWdResponse> HMI.GASServiceReference.GasServiceSoap.CheckIsDefaultPassWdAsync(HMI.GASServiceReference.CheckIsDefaultPassWdRequest request) {
+            return base.Channel.CheckIsDefaultPassWdAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<HMI.GASServiceReference.CheckIsDefaultPassWdResponse> CheckIsDefaultPassWdAsync(string p_Acc) {
+            HMI.GASServiceReference.CheckIsDefaultPassWdRequest inValue = new HMI.GASServiceReference.CheckIsDefaultPassWdRequest();
+            inValue.Body = new HMI.GASServiceReference.CheckIsDefaultPassWdRequestBody();
+            inValue.Body.p_Acc = p_Acc;
+            return ((HMI.GASServiceReference.GasServiceSoap)(this)).CheckIsDefaultPassWdAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        HMI.GASServiceReference.RenewPassWdResponse HMI.GASServiceReference.GasServiceSoap.RenewPassWd(HMI.GASServiceReference.RenewPassWdRequest request) {
+            return base.Channel.RenewPassWd(request);
+        }
+        
+        public HMI.GASServiceReference.CMessage RenewPassWd(string p_Acc, string p_NewPassWd) {
+            HMI.GASServiceReference.RenewPassWdRequest inValue = new HMI.GASServiceReference.RenewPassWdRequest();
+            inValue.Body = new HMI.GASServiceReference.RenewPassWdRequestBody();
+            inValue.Body.p_Acc = p_Acc;
+            inValue.Body.p_NewPassWd = p_NewPassWd;
+            HMI.GASServiceReference.RenewPassWdResponse retVal = ((HMI.GASServiceReference.GasServiceSoap)(this)).RenewPassWd(inValue);
+            return retVal.Body.RenewPassWdResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<HMI.GASServiceReference.RenewPassWdResponse> HMI.GASServiceReference.GasServiceSoap.RenewPassWdAsync(HMI.GASServiceReference.RenewPassWdRequest request) {
+            return base.Channel.RenewPassWdAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<HMI.GASServiceReference.RenewPassWdResponse> RenewPassWdAsync(string p_Acc, string p_NewPassWd) {
+            HMI.GASServiceReference.RenewPassWdRequest inValue = new HMI.GASServiceReference.RenewPassWdRequest();
+            inValue.Body = new HMI.GASServiceReference.RenewPassWdRequestBody();
+            inValue.Body.p_Acc = p_Acc;
+            inValue.Body.p_NewPassWd = p_NewPassWd;
+            return ((HMI.GASServiceReference.GasServiceSoap)(this)).RenewPassWdAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        HMI.GASServiceReference.AddEmailResponse HMI.GASServiceReference.GasServiceSoap.AddEmail(HMI.GASServiceReference.AddEmailRequest request) {
+            return base.Channel.AddEmail(request);
+        }
+        
+        public void AddEmail(string p_Acc, string p_Email) {
+            HMI.GASServiceReference.AddEmailRequest inValue = new HMI.GASServiceReference.AddEmailRequest();
+            inValue.Body = new HMI.GASServiceReference.AddEmailRequestBody();
+            inValue.Body.p_Acc = p_Acc;
+            inValue.Body.p_Email = p_Email;
+            HMI.GASServiceReference.AddEmailResponse retVal = ((HMI.GASServiceReference.GasServiceSoap)(this)).AddEmail(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<HMI.GASServiceReference.AddEmailResponse> HMI.GASServiceReference.GasServiceSoap.AddEmailAsync(HMI.GASServiceReference.AddEmailRequest request) {
+            return base.Channel.AddEmailAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<HMI.GASServiceReference.AddEmailResponse> AddEmailAsync(string p_Acc, string p_Email) {
+            HMI.GASServiceReference.AddEmailRequest inValue = new HMI.GASServiceReference.AddEmailRequest();
+            inValue.Body = new HMI.GASServiceReference.AddEmailRequestBody();
+            inValue.Body.p_Acc = p_Acc;
+            inValue.Body.p_Email = p_Email;
+            return ((HMI.GASServiceReference.GasServiceSoap)(this)).AddEmailAsync(inValue);
         }
     }
 }
