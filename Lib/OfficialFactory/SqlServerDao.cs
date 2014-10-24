@@ -15,16 +15,20 @@ namespace Lib.OfficialFactory
 
         SqlDataAdapter sda = new SqlDataAdapter();
 
+        SqlCommand cmd = null;
 
+        SqlTransaction myTrans = null;
 
         public SqlServerDao()
         {
-            con.ConnectionString = "Data Source = 172.26.100.8;Initial Catalog=UOF;User ID=sa;Password=hp1020.;";
+            //con.ConnectionString = "";
+            cmd = con.CreateCommand();
         }
 
         public SqlServerDao(string p_Constring)
         {
             con.ConnectionString = p_Constring;
+            cmd = con.CreateCommand();
         }
 
         public void SetConnectionString(string p_ConString)
@@ -37,8 +41,11 @@ namespace Lib.OfficialFactory
             try
             {
                 DataSet ds = new DataSet();
-                con.State.ToString();
-                con.Open();
+
+                if (cmd.Connection.State == ConnectionState.Closed)
+                {
+                    cmd.Connection.Open();
+                }
                 string sqlstr = p_Cmd;
 
                 sda.SelectCommand = new SqlCommand(sqlstr, con);
@@ -57,8 +64,11 @@ namespace Lib.OfficialFactory
         {
             try
             {
-                SqlCommand cmd = con.CreateCommand();
-                cmd.Connection.Open();
+                if (cmd.Connection.State == ConnectionState.Closed)
+                {
+                    cmd.Connection.Open();
+                }
+
                 cmd.CommandText = p_Cmd;
 
                 int effectrows = cmd.ExecuteNonQuery();
@@ -69,6 +79,28 @@ namespace Lib.OfficialFactory
             {
                 throw ex;
             }
+        }
+
+        public void BeginTransaction()
+        {
+            if (cmd.Connection.State == ConnectionState.Closed)
+            {
+                cmd.Connection.Open();
+            }
+            myTrans = con.BeginTransaction();
+            cmd.Transaction = myTrans;
+        }
+
+        public void Commit()
+        {
+            myTrans.Commit();
+            con.Close();
+        }
+
+        public void RollBack()
+        {
+            myTrans.Rollback();
+            myTrans.Dispose();
         }
     }
 }
