@@ -31,6 +31,7 @@ namespace HMI
         public fmSearchClockTime()
         {
             InitializeComponent();
+            dao.SetConnectionString("Data Source = 172.26.100.8;Initial Catalog=UOF;User ID=sa;Password=hp1020.;");
         }
 
         private void Form1_Load(object sender, EventArgs e)
