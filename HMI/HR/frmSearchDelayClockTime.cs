@@ -28,6 +28,7 @@ namespace HMI.HR
         {
             InitializeComponent();
             daodoor.SetConnectionString(@"Data Source = SOFTFW_SYSLOG\SQLEXPRESS;Initial Catalog=chiyu;User ID=sa;Password=hp1020.;");
+            dao.SetConnectionString(@"Data Source = 172.26.100.8;Initial Catalog=UOF;User ID=sa;Password=hp1020.;");
         }
 
         private void btnFindMissing_Click(object sender, EventArgs e)
